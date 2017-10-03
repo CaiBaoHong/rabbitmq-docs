@@ -17,12 +17,15 @@ yum install -y rabbitmq-server-3.6.12-1.el7.noarch.rpm
 
 ## 2. 启动RabbitMQ server
 ~~~
-## 安装epel源
-yum install -y epel-release
+## 设置RabbitMQ以后台方式运行
+systemctl enable rabbitmq-server.service
 
-## 安装Erlang
-yum install -y erlang
+## 启动
+systemctl start rabbitmq-server.service
 
-## 安装RabbitMQ server，请自行到官网下载rpm包
-yum install -y rabbitmq-server-3.6.12-1.el7.noarch.rpm
+## 查询状态
+systemctl status rabbitmq-server.service
 ~~~
+
+## 3.调整系统限制
+
