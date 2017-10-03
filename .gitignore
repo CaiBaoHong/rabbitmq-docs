@@ -30,3 +30,4 @@ book.epub
 book.mobi
 
 .idea/
+node_modules/
