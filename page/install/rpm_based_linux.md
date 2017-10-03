@@ -19,7 +19,7 @@ Fedora系统自带有rabbitmq-server，但是版本很旧。 所以最好就是�
 
 ## 3. 可用的rpm分发版本 {#install-3}
 
-Below is a list of supported RPM-based distributions as of RabbitMQ 3.6.3:
+比如RabbitMQ 3.6.3这个版本，它能在以下的支持rpm报管理器Linux分发版本上安装运行：
 
 * CentOS 6.x and 7.x \(note: there are two separate RPM packages for 6.x and 7.x\)
 * RedHat Enterprise Linux 6.x and 7.x \(same as for CentOS, there are two separate packages\)
@@ -29,32 +29,49 @@ The packages may work on other RPM-based distributions if dependencies \(see bel
 
 ## 4. 安装 Erlang {#install-4}
 
-Before installing RabbitMQ, you must install a[supported version](https://www.rabbitmq.com/which-erlang.html)of Erlang/OTP. We strongly recommend using a packaged version. There are three suggested sources for Erlang packages:
+安装RabbitMQ前需要安装Erlang或OTP，具体支持的版本请看[这里](https://www.rabbitmq.com/which-erlang.html)。我们强烈建议使用一个打包好的版本，以下有三个建议的安装渠道：
 
-* We produce
-  [a package](https://github.com/rabbitmq/erlang-rpm)
-  stripped down to only provide those components needed to run RabbitMQ.
-  **It may not be as up to date as Erlang Solutions' packages**
-  , but it might be easiest to use if installing Erlang's dependencies is proving difficult.
-* [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html)
-  produces packages that are usually up to date. They produce two sets of packages - ones which are split up and are more convenient to use if you can add a yum repository, and a monolithic package which might be easier if you have to download manually.
-* [EPEL](http://fedoraproject.org/wiki/EPEL)
-  \("Extra Packages for Enterprise Linux"\); part of the Red Hat / Fedora organisation, provides many additional packages, including Erlang. These are the most official packages, and are split into many small packages, but are not always up to date.
+* [RabbitMQ提供的Erlang包](https://github.com/rabbitmq/erlang-rpm)。**It may not be as up to date as Erlang Solutions' packages**, but it might be easiest to use if installing Erlang's dependencies is proving difficult.
+* [Erlang Solutions提供的Erlang包](https://www.erlang-solutions.com/resources/download.html)。 They produce two sets of packages - ones which are split up and are more convenient to use if you can add a yum repository, and a monolithic package which might be easier if you have to download manually.
+* [EPEL](http://fedoraproject.org/wiki/EPEL) \("Extra Packages for Enterprise Linux"\); part of the Red Hat / Fedora organisation, provides many additional packages, including Erlang. These are the most official packages, and are split into many small packages, but are not always up to date.
 
 **以下是可选的安装Erlang的途径：**
 
 ### 4.1 从RabbitMQ安装零依赖的Erlang {#install-4-1}
 
-1. Download and install the
-   [zero dependency Erlang RPM package for running RabbitMQ](https://github.com/rabbitmq/erlang-rpm)
-   . As the name suggests, the package strips off some Erlang modules and dependencies that are not essential for running RabbitMQ.
+1. 下载并安装 the [zero dependency Erlang RPM package for running RabbitMQ](https://github.com/rabbitmq/erlang-rpm) . 这个包只包含RabbitMQ必须的模块。
 
 ### 4.2 从EPEL仓库安装Erlang {#install-4-2}
 
-1. Follow the steps in the
-   [EPEL FAQ](http://fedoraproject.org/wiki/EPEL/FAQ#howtouse)
-   to enable EPEL on your machine.
-2. Issue the following command as 'root':
+1. 通过以下的方式可以启用EPEL（[EPEL FAQ](#)）
+   For EL5:
+
+   ```
+   su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm'
+   ...
+   su -c 'yum install foo'
+
+   ```
+
+   For EL6:
+
+   ```
+   su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm'
+   ...
+   su -c 'yum install foo'
+
+
+   ```
+
+   For EL7:
+
+   ```
+   su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm'
+   ...
+   su -c 'yum install foo'
+   ```
+
+2. 使用'root'用户执行一下命令即可安装Erlang：
    ```
    yum install erlang
    ```
