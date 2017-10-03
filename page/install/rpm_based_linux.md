@@ -140,61 +140,76 @@ RabbitMQ服务端应该使用默认设置启动的，但你也可以[自定义Ra
 
 **注意**: 服务端是以名称为`rabbitmq`的系统用户身份运行的。如果你修改了`Mnesia`数据库的位置或日志文件的位置，需要确保新目录是`rabbitmq`这用户的（该用户具有访问权限）。
 
+RabbitMQ的服务端默认是不会以后台进程的方式运行的。需要先设置后再启动。官网提供的`chkconfig`、`service`命令都**会重定向到**`systemctl`命令，因此我直接列出`systemctl`的命令：
+
+| 功能 | 命令 |
+| --- | --- |
+| 设置后台运行 | **systemctl **`enable`** rabbitmq-server.service** |
+| 检查设置状态 | **systemctl **`is-enabled`** rabbitmq-server.service** |
+| 启动 | **systemctl **`start`** rabbitmq-server.service** |
+| 检查运行状态 | **systemctl **`status`** rabbitmq-server.service** |
+| 停止 | **systemctl **`stop`** rabbitmq-server.service** |
+
 ## 7. 关于端口 {#install-7}
 
 SELinux（linux的安全子系统）及其它类似的机制会阻止RabbitMQ绑定端口。如果绑定端口失败，RabbitMQ会启动失败。防火墙可以阻止来自外部其它机器的访问。所以请确保以下端口是可以访问的：
 
 | 端口 | 用途 |
-|----|----|
-|4369|[epmd](http://erlang.org/doc/man/epmd.html), a peer discovery service used by RabbitMQ nodes and CLI tools|
-|5672, 5671| used by AMQP 0-9-1 and 1.0 clients without and with TLS|
-|25672| used by Erlang distribution for inter-node and CLI tools communication and is allocated from a dynamic range \(limited to a single port by default, computed as AMQP port + 20000\). See [networking guide](https://www.rabbitmq.com/networking.html) for details.|
-|15672|[HTTP API](https://www.rabbitmq.com/management.html) clients and [rabbitmqadmin](https://www.rabbitmq.com/management-cli.html) \(only if the [management plugin](https://www.rabbitmq.com/management.html) is enabled\)|
-|61613, 61614| [STOMP clients](https://stomp.github.io/stomp-specification-1.2.html) without and with TLS \(only if the [STOMP plugin](https://www.rabbitmq.com/stomp.html) is enabled\)|
-|1883, 8883| \( [MQTT clients](http://mqtt.org/) without and with TLS, if the [MQTT plugin](https://www.rabbitmq.com/mqtt.html) is enabled|
-|15674| STOMP-over-WebSockets clients \(only if the [Web STOMP plugin](https://www.rabbitmq.com/web-stomp.html) is enabled\)|
-|15675| MQTT-over-WebSockets clients \(only if the [Web MQTT plugin](https://www.rabbitmq.com/web-mqtt.html) is enabled\)|
+| --- | --- |
+| 4369 | [epmd](http://erlang.org/doc/man/epmd.html), a peer discovery service used by RabbitMQ nodes and CLI tools |
+| 5672, 5671 | used by AMQP 0-9-1 and 1.0 clients without and with TLS |
+| 25672 | used by Erlang distribution for inter-node and CLI tools communication and is allocated from a dynamic range \(limited to a single port by default, computed as AMQP port + 20000\). See [networking guide](https://www.rabbitmq.com/networking.html) for details. |
+| 15672 | [HTTP API](https://www.rabbitmq.com/management.html) clients and [rabbitmqadmin](https://www.rabbitmq.com/management-cli.html) \(only if the [management plugin](https://www.rabbitmq.com/management.html) is enabled\) |
+| 61613, 61614 | [STOMP clients](https://stomp.github.io/stomp-specification-1.2.html) without and with TLS \(only if the [STOMP plugin](https://www.rabbitmq.com/stomp.html) is enabled\) |
+| 1883, 8883 | \( [MQTT clients](http://mqtt.org/) without and with TLS, if the [MQTT plugin](https://www.rabbitmq.com/mqtt.html) is enabled |
+| 15674 | STOMP-over-WebSockets clients \(only if the [Web STOMP plugin](https://www.rabbitmq.com/web-stomp.html) is enabled\) |
+| 15675 | MQTT-over-WebSockets clients \(only if the [Web MQTT plugin](https://www.rabbitmq.com/web-mqtt.html) is enabled\) |
 
 It is possible to [configure RabbitMQ](https://www.rabbitmq.com/configure.html) to use [different ports and specific network interfaces](https://www.rabbitmq.com/networking.html).
 
 ## 8. 默认用户 {#install-8}
 
-The broker creates a userguestwith passwordguest. Unconfigured clients will in general use these credentials.**By default, these credentials can only be used when connecting to the broker as localhost**so you will need to take action before connecting from any other machine.
+RabbitMQ默认用户帐号及密码都是\`guest\`. Unconfigured clients will in general use these credentials.默认只能从本机访问。因此如果需要从其它机器访问RabbitMQ，需要做些设置。
 
-See the documentation on[access control](https://www.rabbitmq.com/access-control.html)for information on how to create more users, delete theguestuser, or allow remote access to theguestuser.
+请看[access control](https://www.rabbitmq.com/access-control.html)相关的内容，里面会讲解如何创建用户，删除`guest`用户, 或设置允许`guest`用户远程访问RabbitMQ.
 
 ## 9. 调整Linux系统的限制 {#install-9}
 
-RabbitMQ installations running production workloads may need system limits and kernel parameters tuning in order to handle a decent number of concurrent connections and queues. The main setting that needs adjustment is the max number of open files, also known asulimit -n. The default value on many operating systems is too low for a messaging broker \(eg. 1024 on several Linux distributions\). We recommend allowing for at least 65536 file descriptors for userrabbitmqin production environments. 4096 should be sufficient for most development workloads.
+RabbitMQ installations running production workloads may need system limits and kernel parameters tuning in order to handle a decent number of concurrent connections and queues. The main setting that needs adjustment is the max number of open files, also known asulimit -n. The default value on many operating systems is too low for a messaging broker \(eg. 1024 on several Linux distributions\). We recommend allowing for at least 65536 file descriptors for user rabbitmq in production environments. 4096 should be sufficient for most development workloads.
 
-There are two limits in play: the maximum number of open files the OS kernel allows \(fs.file-max\) and the per-user limit \(ulimit -n\). The former must be higher than the latter.
+RabbitMQ如果是在生产环境中运行的话，需要调整系统限制和内核限制，以应对大量并发连接和高容量的队列。要调整的主要是**允许打开文件的最大数量**，即`ulimit -n`命令显示的值。该默认值对消息中间件来说太低了（一般是1024）。我们推荐在生产环境中对系统用户`rabbitmq`（默认运行RabbitMQ server的用户）至少要设置成**65536**，如果是开发环境则设置成**4096。**
+
+实际上有两种限制：操作系统内核允许打开文件的最大数量\(fs.file-max\)、每个用户允许打开文件的最大数量\(ulimit -n\)。前者必须高于后者。
 
 ### 9.1 用systemd来调整（新版的Linux） {#install-9-1}
 
-On distributions that use systemd, the OS limits are controlled via a configuration file at/etc/systemd/system/rabbitmq-server.service.d/limits.conf, for example:
+在使用systemd工具的Linux系统中,操作系统的限制是通过配置这个文件来控制的：`/etc/systemd/system/rabbitmq-server.service.d/limits.conf`, 例如可以设置成这样（如无文件请自行新建）:
 
 ```
 [Service]
-LimitNOFILE
-=
-300000
+LimitNOFILE=300000
 ```
 
 ### 9.2 不用systemd来调整（旧版的Linux） {#install-9-2}
 
-The most straightforward way to adjust the per-user limit for RabbitMQ on distributions that do not use systemd is to edit the[rabbitmq-env.conf](http://www.rabbitmq.com/configure.html)to invokeulimitbefore the service is started.
+The most straightforward way to adjust the per-user limit for RabbitMQ on distributions that do not use systemd is to edit the[rabbitmq-env.conf](http://www.rabbitmq.com/configure.html)to invoke ulimit before the service is started.
+
+不用`systemd`工具来调整每个用户的限制的最直接方式是编辑[rabbitmq-env.conf](http://www.rabbitmq.com/configure.html)文件，编辑后，当RabbitMQ server重启时会执行ulimit命令，从而达到设置**每个用户允许打开文件的最大数量**的目的：
 
 ```
-ulimit
- -S -n 
-4096
+ulimit -S -n 4096
 ```
 
-This\_soft\_limit cannot go higher than the\_hard\_limit \(which defaults to 4096 in many distributions\).[The hard limit can be increased](http://docs.basho.com/riak/latest/ops/tuning/open-files-limit/#Linux)via/etc/security/limits.conf. This also requires enabling the[pam\_limits.so](http://askubuntu.com/a/34559)module and re-login or reboot.
+以上通过执行`ulimit`命令设置的方式，是**soft limit**，而**soft limit不能高于hard limit**（很多linux系统一般设置的hard limit值是4096）。hard limit可以在配置文件`/etc/security/limits.conf`中设置。设置hard limit同时还需要启用[pam\_limits.so](http://askubuntu.com/a/34559)模块，最后还要重新登录或重启一下系统。
 
-Note that limits cannot be changed for running OS processes.
+注意：运行中的RabbitMQ进程的限制值是无法修改的。因此设置后需要重启一下RabbitMQ：
 
-For more information about controllingfs.file-maxwithsysctl, please refer to the excellent[Riak guide on open file limit tuning](http://docs.basho.com/riak/latest/ops/tuning/open-files-limit/#Linux).
+```
+systemctl daemon-reload
+systemctl  restart rabbitmq-server.service
+```
+
+For more information about controlling fs.file-max with sysctl, please refer to the excellent [Riak guide on open file limit tuning](http://docs.basho.com/riak/latest/ops/tuning/open-files-limit/#Linux).
 
 ### 9.3 验证调整是否成功 {#install-9-3}
 
