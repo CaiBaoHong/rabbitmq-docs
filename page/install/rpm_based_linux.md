@@ -45,26 +45,20 @@ The packages may work on other RPM-based distributions if dependencies \(see bel
 
 1. 通过以下的方式可以启用EPEL（[EPEL FAQ](#)）
    For EL5:
-
    ```
    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm'
    ...
    su -c 'yum install foo'
-
    ```
 
    For EL6:
-
    ```
    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm'
    ...
    su -c 'yum install foo'
-
-
    ```
 
    For EL7:
-
    ```
    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm'
    ...
