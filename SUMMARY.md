@@ -10,7 +10,7 @@
     * [从EPEL仓库安装Erlang](page/install/rpm_based_linux.md#install-4-2)
     * [从Erlang Solutions仓库安装Erlang](page/install/rpm_based_linux.md#install-4-3)
     * [从Erlang Solutions安装完整的Erlang](page/install/rpm_based_linux.md#install-4-4)
-    * [xxx](page/install/rpm_based_linux.md#install-4-5)
+    * [Package Version Locking in Yum](page/install/rpm_based_linux.md#install-4-5)
   * [xxx](page/install/rpm_based_linux.md#install-5)
     * [xxx](page/install/rpm_based_linux.md#install-5-1)
     * [xxx](page/install/rpm_based_linux.md#install-5-2)
