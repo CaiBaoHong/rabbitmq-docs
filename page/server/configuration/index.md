@@ -1,10 +1,8 @@
 # RabbitMQ Configuration
 
-
-
 ## Overview
 
-RabbitMQ comes with default built-in settings. Those can be entirely sufficient in some environment \(e.g. development and QA\). If it runs fine, then you possibly don't need any configuration at all. For all other cases, as well as[production deployment tuning](https://www.rabbitmq.com/production-checklist.html), there is a way to configure many things in the broker as well as plugins.
+RabbitM默认的设置能够适应部分使用场景，如开发和QA\). If it runs fine, then you possibly don't need any configuration at all. For all other cases, as well as [production deployment tuning](https://www.rabbitmq.com/production-checklist.html), there is a way to configure many things in the broker as well as plugins.
 
 This guide covers a number of topics related to configuration:
 
@@ -20,10 +18,6 @@ Since configuration affects many areas of the system, including plugins, individ
 
 dive deeper into what can be configured.
 
-
-
-
-
 ## Means of Configuration
 
 RabbitMQ provides three general ways to customise the server:
@@ -34,19 +28,13 @@ RabbitMQ provides three general ways to customise the server:
 | [Configuration File](https://www.rabbitmq.com/configure.html#configuration-file) | defines server and plugin settings for[TCP listeners and other networking-related settings](https://www.rabbitmq.com/networking.html)[TLS](https://www.rabbitmq.com/ssl.html)[resource constraints \(alarms\)](https://www.rabbitmq.com/alarms.html)[authentication and authorization backends](https://www.rabbitmq.com/access-control.html)[message store settings](https://www.rabbitmq.com/persistence-conf.html)and so on. |
 | [Runtime Parameters and Policies](https://www.rabbitmq.com/parameters.html) | defines cluster-wide settings which can change at run time as well as settings that are convenient to configure for groups of queues \(exchanges, etc\) such as including optional queue arguments. |
 
-
-
 Most settings are configured using the first two methods. This guide, therefore, focuses on them.
-
-
 
 ### Config File Locations
 
 [Default config file locations](https://www.rabbitmq.com/configure.html#config-location)vary between operating systems and[package types](https://www.rabbitmq.com/download.html). This topic is covered in more details in the rest of this guide.
 
 When in doubt about RabbitMQ config file location for your OS and installation method, consult the log file and/or management UI as explained in the following sections.
-
-
 
 ### Verify Configuration: How to Find Config File Location
 
@@ -66,13 +54,9 @@ home dir       : /var/lib/rabbitmq
 config file(s) : /var/lib/rabbitmq/hare.config (not found)
 ```
 
-
-
 Alternatively config file location can be found in the[management UI](https://www.rabbitmq.com/management.html), together with other details about nodes.
 
 When troubleshooting configuration settings, it is very useful to veirfy that the config file path is correct, exists and can be loaded \(e.g. the file is readable\) before checking effective node configuration.
-
-
 
 ### Verify Configuration: How to Check Effective Configuration
 
@@ -80,13 +64,9 @@ It is possible to print effective configuration \(user provided values merged in
 
 Checking effective configuration
 
-
-
 ## Customise RabbitMQ Environment
 
 Certain server parameters can be configured using environment variables: node name, RabbitMQ configuration file location, inter-node communication ports, Erlang VM flags, and so on.
-
-
 
 ### Unix \(general\)
 
@@ -109,17 +89,13 @@ More
 
 [info on using rabbitmq-env.conf](https://www.rabbitmq.com/man/rabbitmq-env.conf.5.man.html)
 
-
-
-
-
 ### Windows
 
-If you need to customise names, ports, locations, it is easiest to configure environment variables in the Windows dialogue: Start &gt; Settings &gt; Control Panel &gt; System &gt; Advanced &gt; Environment Variables. Then create or edit the system variable name and value.
+If you need to customise names, ports, locations, it is easiest to configure environment variables in the Windows dialogue: Start &gt; Settings &gt; Control Panel &gt; System &gt; Advanced &gt; Environment Variables. Then create or edit the system variable name and value.
 
 Alternatively, you can create/editrabbitmq-env-conf.batto define environment variables. Its[location](https://www.rabbitmq.com/configure.html#config-location)is configurable using theRABBITMQ\_CONF\_ENV\_FILEenvironment variable.
 
-_For environment changes to take effect on Windows, the service must be re-installed_. It is_not sufficient_to restart the service. This can be done using the installer or on the command line with administrator permissions:
+_For environment changes to take effect on Windows, the service must be re-installed_. It is\_not sufficient\_to restart the service. This can be done using the installer or on the command line with administrator permissions:
 
 * [Start an admin command prompt](https://technet.microsoft.com/en-us/library/cc947813%28v=ws.10%29.aspx)
 * cd into the sbin folder under
@@ -144,10 +120,6 @@ Alternative, if new configuration needs to take effect after next broker restart
   rabbitmq-service.bat install
   , which will only update service parameters
 
-
-
-
-
 ## RabbitMQ Environment Variables
 
 RabbitMQ environment variable names have the prefixRABBITMQ\_. A typical variable calledRABBITMQ\_var\_nameis set as follows:
@@ -167,8 +139,6 @@ RabbitMQ environment variable names have the prefixRABBITMQ\_. A typical variabl
 
 In this way, variables set in the shell environment take priority over variables set inrabbitmq-env.conf, which in turn over-ride RabbitMQ built-in defaults.
 
-
-
 It is unlikely you will need to set any of these environment variables. If you have non-standard requirements, then RabbitMQ environment variables include, but are not limited to:
 
 | Name | Default | Description |
@@ -182,8 +152,8 @@ It is unlikely you will need to set any of these environment variables. If you h
 | RABBITMQ\_SERVICENAME | **Windows Service:**RabbitMQ | The name of the installed service. This will appear inservices.msc. |
 | RABBITMQ\_CONSOLE\_LOG | **Windows Service:** | Set this variable toneworreuseto redirect console output from the server to a file named%RABBITMQ\_SERVICENAME%.debug in the default**RABBITMQ\_BASE**directory.If not set, console output from the server will be discarded \(default\).newA new file will be created each time the service starts.reuseThe file will be overwritten each time the service starts. |
 | RABBITMQ\_CTL\_ERL\_ARGS | None | Parameters for theerlcommand used when invokingrabbitmqctl. This should be overridden for debugging purposes only. |
-| RABBITMQ\_SERVER\_ERL\_ARGS | **Unix\*:**+P 1048576 +t 5000000 +stbt db +zdbbl 32000**Windows:**None | Standard parameters for theerlcommand used when invoking the RabbitMQ Server. This should be overridden for debugging purposes only. Overriding this variable_replaces_the default value. |
-| RABBITMQ\_SERVER\_ADDITIONAL\_ERL\_ARGS | **Unix\*:**None**Windows:**None | Additional parameters for theerlcommand used when invoking the RabbitMQ Server. The value of this variable is_appended_the default list of arguments \(**RABBITMQ\_SERVER\_ERL\_ARGS**\). This is the environment variable to use if+K trueneeds to be overwritten. |
+| RABBITMQ\_SERVER\_ERL\_ARGS | **Unix\*:**+P 1048576 +t 5000000 +stbt db +zdbbl 32000**Windows:**None | Standard parameters for theerlcommand used when invoking the RabbitMQ Server. This should be overridden for debugging purposes only. Overriding this variable\_replaces\_the default value. |
+| RABBITMQ\_SERVER\_ADDITIONAL\_ERL\_ARGS | **Unix\*:**None**Windows:**None | Additional parameters for theerlcommand used when invoking the RabbitMQ Server. The value of this variable is\_appended\_the default list of arguments \(**RABBITMQ\_SERVER\_ERL\_ARGS**\). This is the environment variable to use if+K trueneeds to be overwritten. |
 | RABBITMQ\_SERVER\_START\_ARGS | None | Extra parameters for theerlcommand used when invoking the RabbitMQ Server. This will not override**RABBITMQ\_SERVER\_ERL\_ARGS**. |
 
 \* Unix, Linux, MacOSX
@@ -198,11 +168,7 @@ Other variables upon which RabbitMQ depends are:
 | COMPUTERNAME | **Windows:**localhost | The name of the current machine |
 | ERLANG\_SERVICE\_MANAGER\_PATH | **Windows Service:**%ERLANG\_HOME%\erts-x.x.x\bin | This path is the location oferlsrv.exe, the Erlang service wrapper script. |
 
-
-
 ## Configuration File
-
-
 
 ### The rabbitmq.config File
 
@@ -210,26 +176,19 @@ The configuration filerabbitmq.configallows the RabbitMQ core application, Erlan
 
 An minimalistic example configuration file follows:
 
-
-
 ```
   [
     {rabbit, [{tcp_listeners, [
 5673
 ]}]}
   ].
-
 ```
-
-
 
 This example will alter the port RabbitMQ listens on for AMQP 0-9-1 client connections from 5672 to 5673.
 
 To override main RabbitMQ config file location, use theRABBITMQ\_CONFIG\_FILEenvironment variable.
 
 Note that this configuration file is not the same as the environment configuration file,rabbitmq-env.conf, which can be used to set environment variables on non-Windows systems.
-
-
 
 ### Location of rabbitmq.config and rabbitmq-env.conf
 
@@ -256,23 +215,17 @@ The location of these files is distribution-specific. By default, they are not c
   %APPDATA%
   \RabbitMQ\
 
-
-
 Ifrabbitmq-env.confdoesn't exist, it can be created manually in the location, specified by theRABBITMQ\_CONF\_ENV\_FILEvariable. On Windows systems, it is namedrabbitmq-env.bat.
 
 Ifrabbitmq.configdoesn't exist, it can be created manually. Set the**RABBITMQ\_CONFIG\_FILE**environment variable if you change the location. The Erlang runtime automatically appends the .config extension to the value of this variable.
 
 Restart the server after changes. Windows service users will need to re-install the service after adding or removing a configuration file.
 
-
-
 ### Example rabbitmq.config File
 
 RabbitMQ server source repository contains[an example configuration file](https://github.com/rabbitmq/rabbitmq-server/blob/stable/docs/rabbitmq.config.example)namedrabbitmq.config.example. This example file contains an example of most of the configuration items you might want to set \(with some very obscure ones omitted\) along with documentation for those settings. All configuration items are commented out in the example, so you can uncomment what you need. Note that the example file is meant to be used as, well, example, and should not be treated as a general recommendation.
 
 In most distributions we place this example file in the same location as the real file should be placed \(see above\). However, for the Debian and RPM distributions policy forbids doing so; instead you can find it in/usr/share/doc/rabbitmq-server/or/usr/share/doc/rabbitmq-server-3.6.12/respectively.
-
-
 
 ### Variables Configurable in rabbitmq.config
 
@@ -312,7 +265,7 @@ Many users of RabbitMQ never need to change any of these values, and some are fa
 | reverse\_dns\_lookups | Set totrueto have RabbitMQ perform a reverse DNS lookup on client connections, and present that information throughrabbitmqctland the management plugin.Default:false |
 | delegate\_count | Number of delegate processes to use for intra-cluster communication. On a machine which has a very large number of cores and is also part of a cluster, you may wish to increase this value.Default:16 |
 | trace\_vhosts | Used internally by the[tracer](https://www.rabbitmq.com/firehose.html). You shouldn't change this.Default:\[\] |
-| tcp\_listen\_options | Default socket options. You probably don't want to change this.Default:\[{backlog,       128}, {nodelay,       true}, {linger,        {true,0}}, {exit\_on\_close, false}\]                 |
+| tcp\_listen\_options | Default socket options. You probably don't want to change this.Default:\[{backlog,       128}, {nodelay,       true}, {linger,        {true,0}}, {exit\_on\_close, false}\] |
 | hipe\_compile | Set totrueto precompile parts of RabbitMQ with HiPE, a just-in-time compiler for Erlang. This will increase server throughput at the cost of increased startup time.You might see 20-50% better performance at the cost of a few minutes delay at startup. These figures are highly workload- and hardware-dependent.HiPE support may not be compiled into your Erlang installation. If it is not, enabling this option will just cause a warning message to be displayed and startup will proceed as normal. For example, Debian / Ubuntu users will need to install theerlang-base-hipepackage.HiPE is not available at all on some platforms, notably including Windows.HiPE has known issues in Erlang/OTP versions prior to 17.5. Using a recent Erlang/OTP version is highly recommended for HiPE.Default:false |
 | cluster\_partition\_handling | How to handle network partitions. Available modes are:ignorepause\_minority{pause\_if\_all\_down, \[nodes\], ignore \| autoheal}where\[nodes\]is a list of node names \(ex:\['rabbit@node1', 'rabbit@node2'\]\)autohealSee the[documentation on partitions](https://www.rabbitmq.com/partitions.html#automatic-handling)for more information.Default:ignore |
 | cluster\_keepalive\_interval | How frequently nodes should send keepalive messages to other nodes \(in milliseconds\). Note that this is not the same thing as[net\_ticktime](https://www.rabbitmq.com/nettick.html); missed keepalive messages will not cause nodes to be considered down.Default:10000 |
@@ -338,8 +291,6 @@ In addition, many plugins can have sections in the configuration file, with name
 * [rabbitmq\_shovel](https://www.rabbitmq.com/shovel.html)
 * [rabbitmq\_auth\_backend\_ldap](https://www.rabbitmq.com/ldap.html)
 
-
-
 ### Configuration entry encryption
 
 Sensitive configuration entries \(e.g. password, URL containing credentials\) can be encrypted in the RabbitMQ configuration file. The broker decrypts encrypted entries on start.
@@ -351,36 +302,17 @@ Encrypted values must be inside an Erlangencryptedtuple:{encrypted, ...}. Here i
 ```
 [
   {rabbit, [
-      {default_user, 
-<
-<
-"guest"
->
->
-},
+      {default_user, <<"guest">>},
       {default_pass,
         {encrypted,
-         
-<
-<
-"cPAymwqmMnbPXXRVqVzpxJdrS8mHEKuo2V+3vt1u/fymexD9oztQ2G/oJ4PAaSb2c5N/hRJ2aqP/X0VAfx8xOQ=="
->
->
-
+         <<"cPAymwqmMnbPXXRVqVzpxJdrS8mHEKuo2V+3vt1u/fymexD9oztQ2G/oJ4PAaSb2c5N/hRJ2aqP/X0VAfx8xOQ==">>
         }
       },
       {config_entry_decoder, [
-             {passphrase, 
-<
-<
-"mypassphrase"
->
->
-}
+             {passphrase, <<"mypassphrase">>}
          ]}
     ]}
 ].
-            
 ```
 
 Note the
@@ -389,8 +321,6 @@ config\_entry\_decoder
 
 key with the passphrase that RabbitMQ will use to decrypt encrypted values.
 
-
-
 The passphrase doesn't have to be hardcoded in the configuration file, it can be in a separate file:
 
 ```
@@ -398,13 +328,10 @@ The passphrase doesn't have to be hardcoded in the configuration file, it can be
   {rabbit, [
       ...
       {config_entry_decoder, [
-             {passphrase, {file, 
-"/path/to/passphrase/file"
-}}
+             {passphrase, {file, "/path/to/passphrase/file"}}
          ]}
     ]}
 ].
-            
 ```
 
 RabbitMQ can also request an operator to enter the passphrase when it starts by using
@@ -413,77 +340,23 @@ RabbitMQ can also request an operator to enter the passphrase when it starts by 
 
 .
 
-
-
 Userabbitmqctland theencodecommand to encrypt values:
 
 ```
-rabbitmqctl encode 
-'
-<
-<
-"guest"
->
->
-'
- mypassphrase
-{encrypted,
-<
-<
-"... long encrypted value..."
->
->
-}
-rabbitmqctl encode 
-'"amqp://fred:secret@host1.domain/my_vhost"'
- mypassphrase
-{encrypted,
-<
-<
-"... long encrypted value..."
->
->
-}
-            
+rabbitmqctl encode '<<"guest">>' mypassphrase
+{encrypted,<<"... long encrypted value...">>}
+rabbitmqctl encode '"amqp://fred:secret@host1.domain/my_vhost"' mypassphrase
+{encrypted,<<"... long encrypted value...">>}
 ```
 
-Add the
-
-decode
-
-command if you want to decrypt values:
+Add the `decode` command if you want to decrypt values:
 
 ```
-rabbitmqctl decode 
-'{encrypted, 
-<
-<
-"..."
->
->
-}'
- mypassphrase
-
-<
-<
-"guest"
->
->
-
-rabbitmqctl decode 
-'{encrypted, 
-<
-<
-"..."
->
->
-}'
- mypassphrase
-
-"amqp://fred:secret@host1.domain/my_vhost"
+rabbitmqctl decode '{encrypted, <<"...">>}' mypassphrase
+<<"guest">>
+rabbitmqctl decode '{encrypted, <<"...">>}' mypassphrase
+"amqp://fred:secret@host1.domain/my_vhost"            
 ```
-
-
 
 Values of different types can be encoded. The example above encodes both binaries \(&lt;&lt;"guest"&gt;&gt;\) and strings \("amqp://fred:secret@host1.domain/my\_vhost"\).
 
@@ -496,33 +369,20 @@ You can change these defaults in the configuration file:
   {rabbit, [
       ...
       {config_entry_decoder, [
-             {passphrase, 
-"mypassphrase"
-},
+             {passphrase, "mypassphrase"},
              {cipher, blowfish_cfb64},
              {hash, sha256},
-             {iterations, 
-10000
-}
+             {iterations, 10000}
          ]}
     ]}
-].          
+].  
 ```
 
 On the command line:
 
 ```
 rabbitmqctl encode --cipher blowfish_cfb64 --hash sha256 --iterations 10000 \
-                     
-'
-<
-<
-"guest"
->
->
-'
- mypassphrase
-            
+                     '<<"guest">>' mypassphrase
 ```
 
 
