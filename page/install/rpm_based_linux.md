@@ -90,7 +90,8 @@ The packages may work on other RPM-based distributions if dependencies \(see bel
 
 1. Download and install the [appropriate](https://www.rabbitmq.com/which-erlang.html) esl-erlang RPM from [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html).
 2. Download and install the [esl-erlang-compat](https://github.com/jasonmcintosh/esl-erlang-compat) RPM \([direct download](https://github.com/jasonmcintosh/esl-erlang-compat/releases/download/1.1.1/esl-erlang-compat-18.1-1.noarch.rpm)\) produced by [Jason McIntosh](https://github.com/jasonmcintosh/). 
-3. 4. 5. This is needed since Erlang Solutions' monolithic packages provide "esl-erlang"; this package just requires "esl-erlang" and provides "erlang".
+
+This is needed since Erlang Solutions' monolithic packages provide "esl-erlang"; this package just requires "esl-erlang" and provides "erlang".
 
 ### 4.5 Package Version Locking in Yum {#install-4-5}
 
