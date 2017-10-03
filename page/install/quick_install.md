@@ -29,11 +29,21 @@ systemctl status rabbitmq-server.service
 
 ## 3.调整系统限制
 ~~~
+######调整操作系统允许打开文件的最大数量
 ## vi工具打开，没有这文件就创建一个
 vi /etc/systemd/system/rabbitmq-server.service.d/limits.conf
 
 ## 文件添加内容：
 [Service]
-LimitNOFILE=65000
+LimitNOFILE=300000
+~~~
 
+~~~
+######调整操作系统允许打开文件的最大数量
+## vi工具打开，没有这文件就创建一个
+vi /etc/systemd/system/rabbitmq-server.service.d/limits.conf
+
+## 文件添加内容：
+[Service]
+LimitNOFILE=300000
 ~~~
