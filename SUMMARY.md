@@ -24,7 +24,8 @@
     * [xxx](page/install/rpm_based_linux.md#install-9-2)
     * [xxx](page/install/rpm_based_linux.md#install-9-3)
     * [xxx](page/install/rpm_based_linux.md#install-9-4)
-  
+  * [xxx](page/install/rpm_based_linux.md#install-10)
+    * [xxx](page/install/rpm_based_linux.md#install-10-1)
 * [服务端文档](page/server/index.md)
   * [Configurations](page/server/configuraton/index.md)
     * [File Locations](page/server/configuraton/file_locations.md)
