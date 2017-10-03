@@ -4,12 +4,12 @@
 
 |  | Description | Download |
 | :--- | :--- | :--- |
-| RPM for RHEL 7.x, CentOS 7.x, Fedora 19+ \(supports systemd, from[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.el7.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el7.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el7.noarch.rpm.asc) |
-| RPM for RHEL Linux 6.x, CentOS 6.x, Fedora prior to 19 \(from[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.el6.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el6.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el6.noarch.rpm.asc) |
-| RPM for RHEL Linux 7.x, CentOS 7.x, Fedora 19+ \(supports systemd, from[GitHub](https://github.com/rabbitmq/rabbitmq-server/releases)\) | [rabbitmq-server-3.6.12-1.el7.noarch.rpm](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el7.noarch.rpm) | [\(Signature\)](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el7.noarch.rpm.asc) |
-| RPM for RHEL Linux 6.x, CentOS 6.x, Fedora prior to 19 \(from[GitHub](https://github.com/rabbitmq/rabbitmq-server/releases)\) | [rabbitmq-server-3.6.12-1.el6.noarch.rpm](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el6.noarch.rpm) | [\(Signature\)](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el6.noarch.rpm.asc) |
-| RPM for openSUSE Linux \(from[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.suse.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.suse.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.suse.noarch.rpm.asc) |
-| RPM for SLES 11.x \(from[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.sles11.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.sles11.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.sles11.noarch.rpm.asc) |
+| RPM for RHEL 7.x, CentOS 7.x, Fedora 19+ \(supports systemd, from [Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.el7.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el7.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el7.noarch.rpm.asc) |
+| RPM for RHEL Linux 6.x, CentOS 6.x, Fedora prior to 19 \(from [Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.el6.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el6.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.el6.noarch.rpm.asc) |
+| RPM for RHEL Linux 7.x, CentOS 7.x, Fedora 19+ \(supports systemd, from [GitHub](https://github.com/rabbitmq/rabbitmq-server/releases)\) | [rabbitmq-server-3.6.12-1.el7.noarch.rpm](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el7.noarch.rpm) | [\(Signature\)](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el7.noarch.rpm.asc) |
+| RPM for RHEL Linux 6.x, CentOS 6.x, Fedora prior to 19 \(from [GitHub](https://github.com/rabbitmq/rabbitmq-server/releases)\) | [rabbitmq-server-3.6.12-1.el6.noarch.rpm](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el6.noarch.rpm) | [\(Signature\)](https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v3_6_12/rabbitmq-server-3.6.12-1.el6.noarch.rpm.asc) |
+| RPM for openSUSE Linux \(from [Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.suse.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.suse.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.suse.noarch.rpm.asc) |
+| RPM for SLES 11.x \(from [Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.sles11.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.sles11.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.sles11.noarch.rpm.asc) |
 
 ## 2. 概述 {#install-2}
 
@@ -90,7 +90,7 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
 
 ## 5. 安装RabbitMQ Server {#install-5}
 
-### 5.1 With rpm and Downloaded RPM {#install-5-1}
+### 5.1 rpm安装 {#install-5-1}
 
 After downloading the server package, issue the following command as 'root':
 
@@ -106,7 +106,7 @@ rpm --import https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.a
         yum install rabbitmq-server-3.6.12-1.noarch.rpm
 ```
 
-### 5.2 Using PackageCloud RPM Repository {#install-5-2}
+### 5.2 用PackageCloud RPM仓库安装 {#install-5-2}
 
 PackageCloud installs packages via HTTPS and signs them using their GPG key. There are multiple ways to install:
 
@@ -121,7 +121,7 @@ See
 
 ## 6. 运行 RabbitMQ Server {#install-6}
 
-### 6.1 自定义 RabbitMQ Environment Variables {#install-6-1}
+### 6.1 自定义RabbitMQ环境变量 {#install-6-1}
 
 The server should start using defaults. You can[customise the RabbitMQ environment](https://www.rabbitmq.com/configure.html#customise-general-unix-environment). Also see how to[configure components](https://www.rabbitmq.com/configure.html#configuration-file).
 
