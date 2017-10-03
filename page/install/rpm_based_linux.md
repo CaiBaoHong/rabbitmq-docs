@@ -11,13 +11,13 @@
 | RPM for openSUSE Linux \(from[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.suse.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.suse.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.suse.noarch.rpm.asc) |
 | RPM for SLES 11.x \(from[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)\) | [rabbitmq-server-3.6.12-1.sles11.noarch.rpm](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.sles11.noarch.rpm) | [\(Signature\)](https://dl.bintray.com/rabbitmq/rabbitmq-server-rpm/rabbitmq-server-3.6.12-1.sles11.noarch.rpm.asc) |
 
-## 2. Overview
+## 2. Overview {#install-2}
 
 rabbitmq-serveris included in Fedora. However, the versions included are often quite old. You will probably get better results installing the .rpm from[PackageCloud](https://packagecloud.io/rabbitmq/rabbitmq-server/)or[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm). Check the[Fedora package](https://admin.fedoraproject.org/updates/rabbitmq-server)details for which version of the server is available for which versions of the distribution.
 
 The package is distributed via Yum repositories on[PackageCloud](https://packagecloud.io/rabbitmq/rabbitmq-server/)and[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm).
 
-## 3. Supported Distributions
+## 3. Supported Distributions {#install-3}
 
 Below is a list of supported RPM-based distributions as of RabbitMQ 3.6.3:
 
@@ -27,7 +27,7 @@ Below is a list of supported RPM-based distributions as of RabbitMQ 3.6.3:
 
 The packages may work on other RPM-based distributions if dependencies \(see below\) are satisfied \(e.g. using the Wheezy backports repository\) but their testing and support is done on a best effort basis.
 
-## 4. Install Erlang
+## 4. Install Erlang {#install-4}
 
 Before installing RabbitMQ, you must install a[supported version](https://www.rabbitmq.com/which-erlang.html)of Erlang/OTP. We strongly recommend using a packaged version. There are three suggested sources for Erlang packages:
 
@@ -41,13 +41,13 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
 * [EPEL](http://fedoraproject.org/wiki/EPEL)
   \("Extra Packages for Enterprise Linux"\); part of the Red Hat / Fedora organisation, provides many additional packages, including Erlang. These are the most official packages, and are split into many small packages, but are not always up to date.
 
-### 4.1 Install zero-dependency Erlang from RabbitMQ
+### 4.1 Install zero-dependency Erlang from RabbitMQ {#install-4-1}
 
 1. Download and install the
    [zero dependency Erlang RPM package for running RabbitMQ](https://github.com/rabbitmq/erlang-rpm)
    . As the name suggests, the package strips off some Erlang modules and dependencies that are not essential for running RabbitMQ.
 
-### 4.2 Install Erlang from the EPEL repositoryor
+### 4.2 Install Erlang from the EPEL repositoryor {#install-4-2}
 
 1. Follow the steps in the
    [EPEL FAQ](http://fedoraproject.org/wiki/EPEL/FAQ#howtouse)
@@ -57,7 +57,7 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
    yum install erlang
    ```
 
-### 4.3 Install Erlang from the Erlang Solutions repositoryor
+### 4.3 Install Erlang from the Erlang Solutions repositoryor {#install-4-3}
 
 1. Follow the instructions under "Installation using repository" at
    [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html)
@@ -65,7 +65,7 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
    [supported by RabbitMQ](https://www.rabbitmq.com/which-erlang.html)
    . Version locking \(see below\) is recommended when Erlang installed using this option.
 
-### 4.4 Install monolithic Erlang from Erlang Solutionsor
+### 4.4 Install monolithic Erlang from Erlang Solutionsor {#install-4-4}
 
 1. Download and install the
    [appropriate](https://www.rabbitmq.com/which-erlang.html)
@@ -82,13 +82,13 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
    .
    This is needed since Erlang Solutions' monolithic packages provide "esl-erlang"; this package just requires "esl-erlang" and provides "erlang".
 
-### 4.5 Package Version Locking in Yum
+### 4.5 Package Version Locking in Yum {#install-4-5}
 
 [yum version locking](https://access.redhat.com/solutions/98873)plugin is recommended to prevent unwanted Erlang upgrades. This is highly recommended when Erlang is installed via the Erlang Solutions repository.
 
-## 5. Install RabbitMQ Server
+## 5. Install RabbitMQ Server {#install-5}
 
-### 5.1 With rpm and Downloaded RPM
+### 5.1 With rpm and Downloaded RPM {#install-5-1}
 
 After downloading the server package, issue the following command as 'root':
 
@@ -104,7 +104,7 @@ rpm --import https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.a
         yum install rabbitmq-server-3.6.12-1.noarch.rpm
 ```
 
-### 5.2 Using PackageCloud RPM Repository
+### 5.2 Using PackageCloud RPM Repository {#install-5-2}
 
 PackageCloud installs packages via HTTPS and signs them using their GPG key. There are multiple ways to install:
 
@@ -119,13 +119,13 @@ See
 
 .
 
-## 6. Run RabbitMQ Server
+## 6. Run RabbitMQ Server {#install-6}
 
-### 6.1 Customise RabbitMQ Environment Variables
+### 6.1 Customise RabbitMQ Environment Variables {#install-6-1}
 
 The server should start using defaults. You can[customise the RabbitMQ environment](https://www.rabbitmq.com/configure.html#customise-general-unix-environment). Also see how to[configure components](https://www.rabbitmq.com/configure.html#configuration-file).
 
-### 6.2 Start the Server
+### 6.2 Start the Server {#install-6-2}
 
 The server is not started as a daemon by default when the RabbitMQ server package is installed. To start the daemon by default when the system boots, as an administrator runchkconfig rabbitmq-server on.
 
@@ -133,7 +133,7 @@ As an administrator, start and stop the server as usual using/sbin/service rabbi
 
 \_Note:\_The server is set up to run as system userrabbitmq. If you change the location of the Mnesia database or the logs, you must ensure the files are owned by this user \(and also update the environment variables\).
 
-## 7. Port Access
+## 7. Port Access {#install-7}
 
 SELinux, and similar mechanisms may prevent RabbitMQ from binding to a port. When that happens, RabbitMQ will fail to start. Firewalls can prevent nodes and CLI tools from communicating with each other. Make sure the following ports can be opened:
 
@@ -178,19 +178,19 @@ to use
 
 .
 
-## 8. Default user access
+## 8. Default user access {#install-8}
 
 The broker creates a userguestwith passwordguest. Unconfigured clients will in general use these credentials.**By default, these credentials can only be used when connecting to the broker as localhost**so you will need to take action before connecting from any other machine.
 
 See the documentation on[access control](https://www.rabbitmq.com/access-control.html)for information on how to create more users, delete theguestuser, or allow remote access to theguestuser.
 
-## 9. Controlling System Limits on Linux
+## 9. Controlling System Limits on Linux {#install-9}
 
 RabbitMQ installations running production workloads may need system limits and kernel parameters tuning in order to handle a decent number of concurrent connections and queues. The main setting that needs adjustment is the max number of open files, also known asulimit -n. The default value on many operating systems is too low for a messaging broker \(eg. 1024 on several Linux distributions\). We recommend allowing for at least 65536 file descriptors for userrabbitmqin production environments. 4096 should be sufficient for most development workloads.
 
 There are two limits in play: the maximum number of open files the OS kernel allows \(fs.file-max\) and the per-user limit \(ulimit -n\). The former must be higher than the latter.
 
-### 9.1 With systemd \(Recent Linux Distributions\)
+### 9.1 With systemd \(Recent Linux Distributions\) {#install-9-1}
 
 On distributions that use systemd, the OS limits are controlled via a configuration file at/etc/systemd/system/rabbitmq-server.service.d/limits.conf, for example:
 
@@ -201,7 +201,7 @@ LimitNOFILE
 300000
 ```
 
-### 9.2 Without systemd \(Older Linux Distributions\)
+### 9.2 Without systemd \(Older Linux Distributions\) {#install-9-2}
 
 The most straightforward way to adjust the per-user limit for RabbitMQ on distributions that do not use systemd is to edit the[rabbitmq-env.conf](http://www.rabbitmq.com/configure.html)to invokeulimitbefore the service is started.
 
@@ -217,7 +217,7 @@ Note that limits cannot be changed for running OS processes.
 
 For more information about controllingfs.file-maxwithsysctl, please refer to the excellent[Riak guide on open file limit tuning](http://docs.basho.com/riak/latest/ops/tuning/open-files-limit/#Linux).
 
-### 9.3 Verifying the Limit
+### 9.3 Verifying the Limit {#install-9-3}
 
 [RabbitMQ management UI](https://www.rabbitmq.com/management.html)displays the number of file descriptors available for it to use on the Overview tab.
 
@@ -247,11 +247,11 @@ rabbitmqctl status
 
 .
 
-### 9.4 Configuration Management Tools
+### 9.4 Configuration Management Tools {#install-9-4}
 
 Configuration management tools \(e.g. Chef, Puppet, BOSH\) provide assistance with system limit tuning. Our[developer tools](https://www.rabbitmq.com/devtools.html#devops-tools)guide lists relevant modules and projects.
 
-## 10. Managing the Broker
+## 10. Managing the Broker {#install-10}
 
 To stop the server or check its status, etc., you can use package-specific scripts \(e.g. theservicetool\) or invokerabbitmqctl\(as an administrator\). It should be available on the path. Allrabbitmqctlcommands will report the node absence if no broker is running.
 
@@ -264,7 +264,7 @@ To stop the server or check its status, etc., you can use package-specific scrip
 
 More[info on rabbitmqctl](https://www.rabbitmq.com/man/rabbitmqctl.1.man.html).
 
-### 10.1 Logging
+### 10.1 Logging {#install-10-1}
 
 Output from the server is sent to a**RABBITMQ\_NODENAME**.log file in the**RABBITMQ\_LOG\_BASE**directory. Additional log data is written to**RABBITMQ\_NODENAME**-sasl.log.
 
