@@ -67,5 +67,5 @@ session required pam_limits.so
 ```
 
 **注意：**
-每个用户允许打开文件的最大数量 < 操作系统允许打开文件的最大数量
-soft limit < hard limit
+- 每个用户允许打开文件的最大数量 < 操作系统允许打开文件的最大数量
+- soft limit < hard limit
