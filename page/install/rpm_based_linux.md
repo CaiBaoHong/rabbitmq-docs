@@ -1,6 +1,6 @@
-# Installing on RPM-based Linux \(RHEL, CentOS, Fedora, openSUSE\)
+# 在支持RPM包管理器的Linux安装（RHEL, CentOS, Fedora, openSUSE）
 
-## 1. Download the Server {#install-1}
+## 1. 下载服务端程序 {#install-1}
 
 |  | Description | Download |
 | :--- | :--- | :--- |
