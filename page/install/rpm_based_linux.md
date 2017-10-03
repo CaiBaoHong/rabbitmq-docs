@@ -175,8 +175,6 @@ RabbitMQ默认用户帐号及密码都是\`guest\`. Unconfigured clients will in
 
 ## 9. 调整Linux系统的限制 {#install-9}
 
-RabbitMQ installations running production workloads may need system limits and kernel parameters tuning in order to handle a decent number of concurrent connections and queues. The main setting that needs adjustment is the max number of open files, also known asulimit -n. The default value on many operating systems is too low for a messaging broker \(eg. 1024 on several Linux distributions\). We recommend allowing for at least 65536 file descriptors for user rabbitmq in production environments. 4096 should be sufficient for most development workloads.
-
 RabbitMQ如果是在生产环境中运行的话，需要调整系统限制和内核限制，以应对大量并发连接和高容量的队列。要调整的主要是**允许打开文件的最大数量**，即`ulimit -n`命令显示的值。该默认值对消息中间件来说太低了（一般是1024）。我们推荐在生产环境中对系统用户`rabbitmq`（默认运行RabbitMQ server的用户）至少要设置成**65536**，如果是开发环境则设置成**4096。**
 
 实际上有两种限制：**操作系统**内核允许打开文件的最大数量\(fs.file-max\)、**每个用户**允许打开文件的最大数量\(ulimit -n\)。前者必须高于后者。
@@ -198,7 +196,7 @@ LimitNOFILE=300000
 ulimit -S -n 4096
 ```
 
-以上通过执行`ulimit`命令设置的方式，是**soft limit**，而**soft limit不能高于hard limit**（很多linux系统一般设置的hard limit值是4096）。hard limit可以在配置文件`/etc/security/limits.conf`中设置。设置hard limit同时还需要启用[pam\_limits.so](http://askubuntu.com/a/34559)模块，最后还要重新登录或重启一下系统。
+以上通过执行`ulimit`命令设置的方式，属于用**soft limit**方式设置，而**soft limit不能高于hard limit**（很多linux系统一般设置的hard limit值是4096）。hard limit可以在配置文件`/etc/security/limits.conf`中设置。设置hard limit同时还需要启用[pam\_limits.so](http://askubuntu.com/a/34559)模块，最后还要重新登录或重启一下系统。
 
 **设置hard limit：**
 
@@ -268,8 +266,4 @@ RabbitMQ server的日志输入在**RABBITMQ\_LOG\_BASE**目录下的**RABBITMQ\_
 RabbitMQ server会采用append（新日志写入到日志文件末端）的方式记录日志，所以日志文件中记录的是完整的历史记录。
 
 你可以用`logrotate`程序来做日志滚动和日志压缩。默认情况下`logrotate`的脚本会每周运行一次。处理`/var/log/rabbitmq`目录下的日志文件。如需配置logrotate，请查阅：`/etc/logrotate.d/rabbitmq-server`
-
-
-
-
 
