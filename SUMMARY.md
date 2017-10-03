@@ -5,7 +5,7 @@
   * [下载服务端程序](page/install/rpm_based_linux.md#install-1)
   * [概述](page/install/rpm_based_linux.md#install-2)
   * [可用的rpm分发版本](page/install/rpm_based_linux.md#install-3)
-  * [xxx](page/install/rpm_based_linux.md#install-4)
+  * [安装 Erlang](page/install/rpm_based_linux.md#install-4)
     * [xxx](page/install/rpm_based_linux.md#install-4-1)
     * [xxx](page/install/rpm_based_linux.md#install-4-2)
     * [xxx](page/install/rpm_based_linux.md#install-4-3)
