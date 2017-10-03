@@ -74,8 +74,13 @@ session required pam_limits.so
 **开放端口：**
 
 ```
+## 开放http管理后台的端口
 firewall-cmd --permanent --zone=public --add-port=15672/tcp
+
+## 重新加载
 firewall-cmd --reload
+
+## 查询开放的端口
 firewall-cmd --zone=public --list-ports
 ```
 
