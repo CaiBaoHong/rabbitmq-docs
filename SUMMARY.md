@@ -17,7 +17,7 @@
   * [用PackageCloud RPM仓库安装](page/install/rpm_based_linux.md#install-6)
     * [用PackageCloud RPM仓库安装](page/install/rpm_based_linux.md#install-6-1)
     * [启动Start the Server](page/install/rpm_based_linux.md#install-6-2)
-  * [xxx](page/install/rpm_based_linux.md#install-7)
+  * [关于端口](page/install/rpm_based_linux.md#install-7)
   * [xxx](page/install/rpm_based_linux.md#install-8)
   * [xxx](page/install/rpm_based_linux.md#install-9)
     * [xxx](page/install/rpm_based_linux.md#install-9-1)
