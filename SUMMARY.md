@@ -2,6 +2,7 @@
 
 * [RabbitMQ 文档](README.md)
 * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md)
+  * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md)
 * [服务端文档](page/server/index.md)
   * [Configurations](page/server/configuraton/index.md)
     * [File Locations](page/server/configuraton/file_locations.md)
@@ -53,4 +54,3 @@
   * [AMQP 0-9-1 URI 规范](page/client/amqp_0-9-1_uri_spec/index.md)
     * [AMQP 0-9-1 URI 参数](page/client/amqp_0-9-1_uri_spec/amqp_0-9-1_uri_params.md)
 
-AMQP 0-9-1 Reference
