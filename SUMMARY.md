@@ -7,7 +7,7 @@
   * [可用的rpm分发版本](page/install/rpm_based_linux.md#install-3)
   * [安装 Erlang](page/install/rpm_based_linux.md#install-4)
     * [从RabbitMQ安装零依赖的Erlang](page/install/rpm_based_linux.md#install-4-1)
-    * [xxx](page/install/rpm_based_linux.md#install-4-2)
+    * [从EPEL仓库安装Erlang](page/install/rpm_based_linux.md#install-4-2)
     * [xxx](page/install/rpm_based_linux.md#install-4-3)
     * [xxx](page/install/rpm_based_linux.md#install-4-4)
     * [xxx](page/install/rpm_based_linux.md#install-4-5)
