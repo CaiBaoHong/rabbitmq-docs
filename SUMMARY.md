@@ -8,7 +8,7 @@
   * [安装 Erlang](page/install/rpm_based_linux.md#install-4)
     * [从RabbitMQ安装零依赖的Erlang](page/install/rpm_based_linux.md#install-4-1)
     * [从EPEL仓库安装Erlang](page/install/rpm_based_linux.md#install-4-2)
-    * [从Erlang Solutions仓库安装Erlang](page/install/rpm_based_linux.md#install-4-3)
+    * [从Erlang Solutions仓库安装Erlang](page/install/rpm_based_linux.md#install43)
     * [从Erlang Solutions安装完整的Erlang](page/install/rpm_based_linux.md#install-4-4)
     * [Package Version Locking in Yum](page/install/rpm_based_linux.md#install-4-5)
   * [xxx](page/install/rpm_based_linux.md#install-5)
