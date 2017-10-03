@@ -43,13 +43,13 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
 
 **以下是可选的安装Erlang的途径：**
 
-### 4.1 安装 zero-dependency Erlang from RabbitMQ {#install-4-1}
+### 4.1 从RabbitMQ安装零依赖的Erlang {#install-4-1}
 
 1. Download and install the
    [zero dependency Erlang RPM package for running RabbitMQ](https://github.com/rabbitmq/erlang-rpm)
    . As the name suggests, the package strips off some Erlang modules and dependencies that are not essential for running RabbitMQ.
 
-### 4.2 安装 Erlang from the EPEL repository {#install-4-2}
+### 4.2 从EPEL仓库安装Erlang {#install-4-2}
 
 1. Follow the steps in the
    [EPEL FAQ](http://fedoraproject.org/wiki/EPEL/FAQ#howtouse)
@@ -59,7 +59,7 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
    yum install erlang
    ```
 
-### 4.3 安装 Erlang from the Erlang Solutions repository {#install-4-3}
+### 4.3 从Erlang Solutions仓库安装Erlang {#install-4-3}
 
 1. Follow the instructions under "Installation using repository" at
    [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html)
@@ -67,7 +67,7 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
    [supported by RabbitMQ](https://www.rabbitmq.com/which-erlang.html)
    . Version locking \(see below\) is recommended when Erlang installed using this option.
 
-### 4.4 安装完整的 Erlang from Erlang Solutions {#install-4-4}
+### 4.4 从Erlang Solutions安装完整的Erlang {#install-4-4}
 
 1. Download and install the
    [appropriate](https://www.rabbitmq.com/which-erlang.html)
@@ -118,8 +118,6 @@ PackageCloud installs packages via HTTPS and signs them using their GPG key. The
 See
 
 [PackageCloud RabbitMQ repository instructions](https://packagecloud.io/rabbitmq/rabbitmq-server/install)
-
-
 
 ## 6. 运行 RabbitMQ Server {#install-6}
 
