@@ -14,3 +14,15 @@ yum install -y erlang
 ## 安装RabbitMQ server，请自行到官网下载rpm包
 yum install -y rabbitmq-server-3.6.12-1.el7.noarch.rpm
 ~~~
+
+## 2. 启动RabbitMQ server
+~~~
+## 安装epel源
+yum install -y epel-release
+
+## 安装Erlang
+yum install -y erlang
+
+## 安装RabbitMQ server，请自行到官网下载rpm包
+yum install -y rabbitmq-server-3.6.12-1.el7.noarch.rpm
+~~~
