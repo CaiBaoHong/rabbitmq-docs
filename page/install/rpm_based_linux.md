@@ -59,7 +59,7 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
    yum install erlang
    ```
 
-### 4.3 从Erlang Solutions仓库安装Erlang {#install43}
+### 4.3 从Erlang Solutions仓库安装Erlang {#install-4-3}
 
 1. Follow the instructions under "Installation using repository" at
    [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html)
