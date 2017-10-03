@@ -71,7 +71,7 @@ session required pam_limits.so
 * 每个用户允许打开文件的最大数量 &lt; 操作系统允许打开文件的最大数量
 * soft limit &lt; hard limit
 
-**开放端口：**
+## 4.**开放端口**
 
 ```
 ## 开放http管理后台的端口
