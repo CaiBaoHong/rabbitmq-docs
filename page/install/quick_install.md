@@ -28,4 +28,12 @@ systemctl status rabbitmq-server.service
 ~~~
 
 ## 3.调整系统限制
+~~~
+## vi工具打开，没有这文件就创建一个
+vi /etc/systemd/system/rabbitmq-server.service.d/limits.conf
 
+## 文件添加内容：
+[Service]
+LimitNOFILE=65000
+
+~~~
