@@ -263,9 +263,13 @@ cat /proc/$RABBITMQ_BEAM_PROCESS_PID/limits
 
 ### 10.1 日志 {#install-10-1}
 
-Output from the server is sent to a**RABBITMQ\_NODENAME**.log file in the**RABBITMQ\_LOG\_BASE**directory. Additional log data is written to**RABBITMQ\_NODENAME**-sasl.log.
+RabbitMQ server的日志输入在**RABBITMQ\_LOG\_BASE**目录下的**RABBITMQ\_NODENAME**.log文件。多出来的日志数据会写入到**RABBITMQ\_NODENAME**-sasl.log文件。
 
-The broker always appends to the log files, so a complete log history is retained.
+RabbitMQ server会采用append（新日志写入到日志文件末端）的方式记录日志，所以日志文件中记录的是完整的历史记录。
 
-You can use thelogrotateprogram to do all necessary rotation and compression, and you can change it. By default, this script runs weekly on files located in default/var/log/rabbitmqdirectory. See/etc/logrotate.d/rabbitmq-serverto configurelogrotate.
+你可以用`logrotate`程序来做日志滚动和日志压缩。默认情况下`logrotate`的脚本会每周运行一次。处理`/var/log/rabbitmq`目录下的日志文件。如需配置logrotate，请查阅：`/etc/logrotate.d/rabbitmq-server`
+
+
+
+
 
