@@ -17,6 +17,13 @@
   * [xxx](page/install/rpm_based_linux.md#install-6)
     * [xxx](page/install/rpm_based_linux.md#install-6-1)
     * [xxx](page/install/rpm_based_linux.md#install-6-2)
+  * [xxx](page/install/rpm_based_linux.md#install-7)
+  * [xxx](page/install/rpm_based_linux.md#install-8)
+  * [xxx](page/install/rpm_based_linux.md#install-9)
+    * [xxx](page/install/rpm_based_linux.md#install-9-1)
+    * [xxx](page/install/rpm_based_linux.md#install-9-2)
+    * [xxx](page/install/rpm_based_linux.md#install-9-3)
+    * [xxx](page/install/rpm_based_linux.md#install-9-4)
   
 * [服务端文档](page/server/index.md)
   * [Configurations](page/server/configuraton/index.md)
