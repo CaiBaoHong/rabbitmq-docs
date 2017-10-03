@@ -28,7 +28,7 @@ Most settings are configured using the first two methods. This guide, therefore,
 
 ### Config File Locations
 
-因操作系统和[package types](https://www.rabbitmq.com/download.html)的不同，[默认配置文件的位置](https://www.rabbitmq.com/configure.html#config-location)也不尽相同。
+因操作系统和[package types](https://www.rabbitmq.com/download.html)的不同，[默认配置文件的位置](https://www.rabbitmq.com/configure.html#config-location)也不尽相同。  
 This topic is covered in more details in the rest of this guide.
 
 如果不知道RabbitMQ的配置文件的位置，可以查看日志文件和管理后台，就能知道配置文件的位置了。
@@ -67,7 +67,7 @@ config file(s) : /var/lib/rabbitmq/hare.config (not found)
 
 在类Unix系统上，可以通过创建或编辑`rabbitmq-env.conf`文件来定义环境变量。`rabbitmq-env.conf`文件的[位置](https://www.rabbitmq.com/configure.html#config-location)可以通过`RABBITMQ_CONF_ENV_FILE`环境变量来设定。
 
-`rabbitmq-env.conf`文件配置示例(不用加`RABBITMQ_`前缀)：
+`rabbitmq-env.conf`文件配置示例\(不用加`RABBITMQ_`前缀\)：
 
 ```
 #example rabbitmq-env.conf file entries
@@ -81,9 +81,9 @@ CONFIG_FILE=/etc/rabbitmq/testdir/bunnies
 ```
 
 **注意：**
-- 配置文件：rabbitmq.config-->可通过环境变量配置文件来设置
-- 环境变量配置文件：rabbitmq-env.conf-->可通过`RABBITMQ_CONF_ENV_FILE`环境变量来设置
 
+* 配置文件：rabbitmq.config--&gt;可通过环境变量配置文件来设置
+* 环境变量配置文件：rabbitmq-env.conf--&gt;可通过`RABBITMQ_CONF_ENV_FILE`环境变量来设置
 
 关于`rabbitmq-env.conf`文件的更多信息请看：[info on using rabbitmq-env.conf](https://www.rabbitmq.com/man/rabbitmq-env.conf.5.man.html)
 
@@ -96,79 +96,62 @@ Alternatively, you can create/editrabbitmq-env-conf.batto define environment var
 _For environment changes to take effect on Windows, the service must be re-installed_. It is\_not sufficient\_to restart the service. This can be done using the installer or on the command line with administrator permissions:
 
 * [Start an admin command prompt](https://technet.microsoft.com/en-us/library/cc947813%28v=ws.10%29.aspx)
-* cd into the sbin folder under
-  _RabbitMQ server installation directory_
-  \(e.g.
-  C:\Program Files \(x86\)\RabbitMQ Server\rabbitmq\_server-3.6.12\sbin
-  \)
-* Run
-  rabbitmq-service.bat remove
-* Set environment variables via command line, i.e. run commands like the following:
-  set RABBITMQ\_BASE=c:\Data\RabbitMQ
-* Run
-  rabbitmq-service.bat install
+* cd into the sbin folder under _RabbitMQ server installation directory _\(e.g. C:\Program Files \(x86\)\RabbitMQ Server\rabbitmq\_server-3.6.12\sbin\)
+* Run `rabbitmq-service.bat remove`
+* Set environment variables via command line, i.e. run commands like the following:`set RABBITMQ_BASE=c:\Data\RabbitMQ`
+* Run `rabbitmq-service.bat install`
 
 Alternative, if new configuration needs to take effect after next broker restart, one step can be skipped:
 
 * [Start an admin command prompt](https://technet.microsoft.com/en-us/library/cc947813%28v=ws.10%29.aspx)
-* cd into the sbin folder under
-  _RabbitMQ server installation directory_
+* cd into the sbin folder under _RabbitMQ server installation directory_
 * Set environment variables via command line
-* Run
-  rabbitmq-service.bat install
-  , which will only update service parameters
+* Run `rabbitmq-service.bat install`, which will only update service parameters
 
-## RabbitMQ Environment Variables
+## RabbitMQ的环境变量
 
-RabbitMQ environment variable names have the prefixRABBITMQ\_. A typical variable calledRABBITMQ\_var\_nameis set as follows:
+RabbitMQ 的环境变量都是带`RABBITMQ_`前缀的。 形式如`RABBITMQ_var_name`的环境变量，其设置优先级如下:
 
-* a shell environment variable called
-  RABBITMQ\_
-  var\_name
-  is used if this is defined;
-* otherwise
-  , a variable called
-  var\_name
-  is used if this is set in the
-  rabbitmq-env.conf
-  file;
-* otherwise
-  , a system-specified default value is used.
+* 如果在命令行中设置了名为`RABBITMQ_var_name` 的变量，就使用该值；
+* 其次，如果在rabbitmq-env.conf文件中设置了名为`var_name` 的变量，就使用该值；
+* 最后，如果以上都没有匹配的变量值，就使用默认值。
 
-In this way, variables set in the shell environment take priority over variables set inrabbitmq-env.conf, which in turn over-ride RabbitMQ built-in defaults.
+**优先级：**
 
-It is unlikely you will need to set any of these environment variables. If you have non-standard requirements, then RabbitMQ environment variables include, but are not limited to:
+**命令行设置的环境变量 &gt; rabbitmq-env.conf文件中设置的环境变量 &gt; 内置默认值**
 
-| Name | Default | Description |
+RabbitMQ 的环境变量:
+
+| 名称 | 默认值 | 描述 |
 | :--- | :--- | :--- |
-| RABBITMQ\_NODE\_IP\_ADDRESS | the empty string - meaning bind to all network interfaces. | Change this if you only want to bind to one network interface. To bind to two or more interfaces, use thetcp\_listenerskey inrabbitmq.config. |
+| RABBITMQ\_NODE\_IP\_ADDRESS | 空字符串，表示绑定所有network interfaces | Change this if you only want to bind to one network interface. To bind to two or more interfaces, use the tcp\_listeners key in rabbitmq.config. |
 | RABBITMQ\_NODE\_PORT | 5672 |  |
 | RABBITMQ\_DIST\_PORT | RABBITMQ\_NODE\_PORT + 20000 | Port used for inter-node and CLI tool communition. Ignored if your config file setskernel.inet\_dist\_listen\_minorkernel.inet\_dist\_listen\_maxkeys. See[Networking](https://www.rabbitmq.com/networking.html)for details. |
-| RABBITMQ\_NODENAME | **Unix\*:**rabbit@$HOSTNAME**Windows:**rabbit@%COMPUTERNAME% | The node name should be unique per erlang-node-and-machine combination. To run multiple nodes, see the[clustering guide](https://www.rabbitmq.com/clustering.html). |
-| RABBITMQ\_CONF\_ENV\_FILE | **Generic UNIX**-$RABBITMQ\_HOME/etc/rabbitmq/rabbitmq-env.conf**Debian**-/etc/rabbitmq/rabbitmq-env.conf**RPM**-/etc/rabbitmq/rabbitmq-env.conf**Mac OS X \(Homebrew\)**-${install\_prefix}/etc/rabbitmq/rabbitmq-env.conf, the Homebrew prefix is usually/usr/local**Windows**-%APPDATA%\RabbitMQ\rabbitmq-env-conf.bat | Location of the file that contains environment variable definitions \(without theRABBITMQ\_prefix\). Note that the file name on Windows is different from other operating systems. |
+| RABBITMQ\_NODENAME | **Unix\*:**rabbit@$HOSTNAME                  **Windows:**rabbit@%COMPUTERNAME% | 节点名。The node name should be unique per erlang-node-and-machine combination. To run multiple nodes, see the [clustering guide](https://www.rabbitmq.com/clustering.html). |
+| RABBITMQ\_CONF\_ENV\_FILE | **Generic UNIX **- $RABBITMQ\_HOME/etc/rabbitmq/rabbitmq-env.conf                                                                               **Debian **- /etc/rabbitmq/rabbitmq-env.conf                                                                                                                              **RPM **- /etc/rabbitmq/rabbitmq-env.conf                                                                                                                               **Mac OS X \(Homebrew\) **- ${install\_prefix}/etc/rabbitmq/rabbitmq-env.conf, the Homebrew prefix is usually/usr/local                                                                 **Windows **- %APPDATA%\RabbitMQ\rabbitmq-env-conf.bat | 环境变量配置文件的位置 \(注意：文件中环境变量是没有RABBITMQ\_前缀的\). Note that the file name on Windows is different from other operating systems. |
 | RABBITMQ\_USE\_LONGNAME |  | When set totruethis will cause RabbitMQ to use fully qualified names to identify nodes. This may prove useful on EC2. Note that it is not possible to switch between using short and long names without resetting the node. |
-| RABBITMQ\_SERVICENAME | **Windows Service:**RabbitMQ | The name of the installed service. This will appear inservices.msc. |
-| RABBITMQ\_CONSOLE\_LOG | **Windows Service:** | Set this variable toneworreuseto redirect console output from the server to a file named%RABBITMQ\_SERVICENAME%.debug in the default**RABBITMQ\_BASE**directory.If not set, console output from the server will be discarded \(default\).newA new file will be created each time the service starts.reuseThe file will be overwritten each time the service starts. |
+| RABBITMQ\_SERVICENAME | **Windows Service:**RabbitMQ | 系统中安装服务的名称，该名称会出现在services.msc文件中 |
+| RABBITMQ\_CONSOLE\_LOG | **Windows Service:** | Set this variable toneworreuseto redirect console output from the server to a file named%RABBITMQ\_SERVICENAME%.debug in the default **RABBITMQ\_BASE **directory.If not set, console output from the server will be discarded \(default\).newA new file will be created each time the service starts.reuseThe file will be overwritten each time the service starts. |
 | RABBITMQ\_CTL\_ERL\_ARGS | None | Parameters for theerlcommand used when invokingrabbitmqctl. This should be overridden for debugging purposes only. |
-| RABBITMQ\_SERVER\_ERL\_ARGS | **Unix\*:**+P 1048576 +t 5000000 +stbt db +zdbbl 32000**Windows:**None | Standard parameters for theerlcommand used when invoking the RabbitMQ Server. This should be overridden for debugging purposes only. Overriding this variable\_replaces\_the default value. |
+| RABBITMQ\_SERVER\_ERL\_ARGS | **Unix\*:**+P 1048576 +t 5000000 +stbt db +zdbbl 32000                                      **Windows:**None | Standard parameters for theerlcommand used when invoking the RabbitMQ Server. This should be overridden for debugging purposes only. Overriding this variable\_replaces\_the default value. |
 | RABBITMQ\_SERVER\_ADDITIONAL\_ERL\_ARGS | **Unix\*:**None**Windows:**None | Additional parameters for theerlcommand used when invoking the RabbitMQ Server. The value of this variable is\_appended\_the default list of arguments \(**RABBITMQ\_SERVER\_ERL\_ARGS**\). This is the environment variable to use if+K trueneeds to be overwritten. |
 | RABBITMQ\_SERVER\_START\_ARGS | None | Extra parameters for theerlcommand used when invoking the RabbitMQ Server. This will not override**RABBITMQ\_SERVER\_ERL\_ARGS**. |
 
 \* Unix, Linux, MacOSX
 
-In addition, there are several environment variables which tell RabbitMQ[where to locate its database, log files, plugins, configuration etc](https://www.rabbitmq.com/relocate.html).
+另外，还有一些环境变量是用来设置RabbitMQ的[数据库位置、日志文件位置、插件位置等等](https://www.rabbitmq.com/relocate.html)。
 
-Other variables upon which RabbitMQ depends are:
+还有几个根据RabbitMQ不同而不同的变量：
 
-| Name | Default | Description |
+| 名称 | 默认值 | 描述 |
 | :--- | :--- | :--- |
-| HOSTNAME | **Unix, Linux:**env hostname**MacOSX:**env hostname -s | The name of the current machine |
-| COMPUTERNAME | **Windows:**localhost | The name of the current machine |
-| ERLANG\_SERVICE\_MANAGER\_PATH | **Windows Service:**%ERLANG\_HOME%\erts-x.x.x\bin | This path is the location oferlsrv.exe, the Erlang service wrapper script. |
+| HOSTNAME | **Unix, Linux:**env hostname                      **MacOSX:**env hostname -s | 当前机器的名称 |
+| COMPUTERNAME | **Windows:**localhost | 当前机器的名称 |
+| ERLANG\_SERVICE\_MANAGER\_PATH | **Windows Service:**%ERLANG\_HOME%\erts-x.x.x\bin | This path is the location of erlsrv.exe, the Erlang service wrapper script. |
 
-## Configuration File
+## 配置文件
 
-### The rabbitmq.config File
+### rabbitmq.config文件
 
 The configuration filerabbitmq.configallows the RabbitMQ core application, Erlang services and RabbitMQ plugins to be configured. It is a standard Erlang configuration file, documented on the[Erlang Config Man Page](http://www.erlang.org/doc/man/config.html).
 
@@ -176,9 +159,7 @@ An minimalistic example configuration file follows:
 
 ```
   [
-    {rabbit, [{tcp_listeners, [
-5673
-]}]}
+    {rabbit, [{tcp_listeners, [5673]}]}
   ].
 ```
 
@@ -188,32 +169,17 @@ To override main RabbitMQ config file location, use theRABBITMQ\_CONFIG\_FILEenv
 
 Note that this configuration file is not the same as the environment configuration file,rabbitmq-env.conf, which can be used to set environment variables on non-Windows systems.
 
-### Location of rabbitmq.config and rabbitmq-env.conf
+### rabbitmq.config和rabbitmq-env.conf的位置
 
 The location of these files is distribution-specific. By default, they are not created, but expect to be located in the following places on each platform:
 
-* **Generic UNIX**
-  -
-  $RABBITMQ\_HOME
-  /etc/rabbitmq/
-* **Debian**
-  -
-  /etc/rabbitmq/
-* **RPM**
-  -
-  /etc/rabbitmq/
-* **Mac OS X \(Homebrew\)**
-  -
-  ${install\_prefix}
-  /etc/rabbitmq/
-  , the Homebrew prefix is usually
-  /usr/local
-* **Windows**
-  -
-  %APPDATA%
-  \RabbitMQ\
+* **Generic UNIX **- $RABBITMQ\_HOME/etc/rabbitmq/
+* **Debian **- /etc/rabbitmq/
+* **RPM **-/etc/rabbitmq/
+* **Mac OS X \(Homebrew\) **- ${install\_prefix}/etc/rabbitmq/, the Homebrew prefix is usually /usr/local
+* **Windows **- %APPDATA%\RabbitMQ\
 
-Ifrabbitmq-env.confdoesn't exist, it can be created manually in the location, specified by theRABBITMQ\_CONF\_ENV\_FILEvariable. On Windows systems, it is namedrabbitmq-env.bat.
+If rabbitmq-env.conf doesn't exist, it can be created manually in the location, specified by theRABBITMQ\_CONF\_ENV\_FILEvariable. On Windows systems, it is namedrabbitmq-env.bat.
 
 Ifrabbitmq.configdoesn't exist, it can be created manually. Set the**RABBITMQ\_CONFIG\_FILE**environment variable if you change the location. The Erlang runtime automatically appends the .config extension to the value of this variable.
 
