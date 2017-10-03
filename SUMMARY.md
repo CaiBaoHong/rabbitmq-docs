@@ -22,7 +22,7 @@
   * [调整Linux系统的限制](page/install/rpm_based_linux.md#install-9)
     * [用systemd来调整（新版的Linux）](page/install/rpm_based_linux.md#install-9-1)
     * [不用systemd来调整（旧版的Linux）](page/install/rpm_based_linux.md#install-9-2)
-    * [xxx](page/install/rpm_based_linux.md#install-9-3)
+    * [验证调整是否成功](page/install/rpm_based_linux.md#install-9-3)
     * [xxx](page/install/rpm_based_linux.md#install-9-4)
   * [xxx](page/install/rpm_based_linux.md#install-10)
     * [xxx](page/install/rpm_based_linux.md#install-10-1)
