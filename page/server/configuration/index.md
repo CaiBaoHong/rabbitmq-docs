@@ -2,31 +2,27 @@
 
 ## Overview
 
-RabbitM默认的设置能够适应部分使用场景，如开发和QA\). If it runs fine, then you possibly don't need any configuration at all. For all other cases, as well as [production deployment tuning](https://www.rabbitmq.com/production-checklist.html), there is a way to configure many things in the broker as well as plugins.
+RabbitMQ默认的设置能够适应部分使用场景，如开发和QA。如果运行没问题，那就不用特别配置。而对于其它情况，如[生产环境](https://www.rabbitmq.com/production-checklist.html), 我们是可以对消息中间件和插件进行很多的配置的。
 
-This guide covers a number of topics related to configuration:
+在这里讨论配置相关的话题如下:
 
-* The ways in which various settings of the server and plugins are configured
-* Configuration file\(s\)
-* Environment variables
-* Most commonly configured core server settings
-* Troubleshooting: how to verify config file location and effective configuration
+* 配置服务端和插件的途径
+* 配置文件
+* 环境变量
+* 服务端常用配置
+* 如何验证配置
 
-Since configuration affects many areas of the system, including plugins, individual
+Since configuration affects many areas of the system, including plugins, individual [documentation guides](https://www.rabbitmq.com/documentation.html) dive deeper into what can be configured.
 
-[documentation guides](https://www.rabbitmq.com/documentation.html)
+## 配置的手段
 
-dive deeper into what can be configured.
+RabbitMQ提供以下途径可以配置服务端:
 
-## Means of Configuration
-
-RabbitMQ provides three general ways to customise the server:
-
-| Mechanism | Description |
+| 途径 | 描述 |
 | :--- | :--- |
-| [Environment Variables](https://www.rabbitmq.com/configure.html#define-environment-variables) | define node name, file and directory locations, runtime flags \(taken from the shell, or set in the environment configuration file,rabbitmq-env.conf/rabbitmq-env-conf.bat\) |
-| [Configuration File](https://www.rabbitmq.com/configure.html#configuration-file) | defines server and plugin settings for[TCP listeners and other networking-related settings](https://www.rabbitmq.com/networking.html)[TLS](https://www.rabbitmq.com/ssl.html)[resource constraints \(alarms\)](https://www.rabbitmq.com/alarms.html)[authentication and authorization backends](https://www.rabbitmq.com/access-control.html)[message store settings](https://www.rabbitmq.com/persistence-conf.html)and so on. |
-| [Runtime Parameters and Policies](https://www.rabbitmq.com/parameters.html) | defines cluster-wide settings which can change at run time as well as settings that are convenient to configure for groups of queues \(exchanges, etc\) such as including optional queue arguments. |
+| [环境变量](https://www.rabbitmq.com/configure.html#define-environment-variables) | 定义节点名、文件和目录的位置, runtime flags \(从shell中获取，或在环境配置文件中设置,即：rabbitmq-env.conf或rabbitmq-env-conf.bat\) |
+| [配置文件](https://www.rabbitmq.com/configure.html#configuration-file) | defines server and plugin settings for[TCP listeners and other networking-related settings](https://www.rabbitmq.com/networking.html)[TLS](https://www.rabbitmq.com/ssl.html)[resource constraints \(alarms\)](https://www.rabbitmq.com/alarms.html)[authentication and authorization backends](https://www.rabbitmq.com/access-control.html)[message store settings](https://www.rabbitmq.com/persistence-conf.html)and so on. |
+| [运行时参数和策略](https://www.rabbitmq.com/parameters.html) | defines cluster-wide settings which can change at run time as well as settings that are convenient to configure for groups of queues \(exchanges, etc\) such as including optional queue arguments. |
 
 Most settings are configured using the first two methods. This guide, therefore, focuses on them.
 
@@ -355,7 +351,7 @@ Add the `decode` command if you want to decrypt values:
 rabbitmqctl decode '{encrypted, <<"...">>}' mypassphrase
 <<"guest">>
 rabbitmqctl decode '{encrypted, <<"...">>}' mypassphrase
-"amqp://fred:secret@host1.domain/my_vhost"            
+"amqp://fred:secret@host1.domain/my_vhost"
 ```
 
 Values of different types can be encoded. The example above encodes both binaries \(&lt;&lt;"guest"&gt;&gt;\) and strings \("amqp://fred:secret@host1.domain/my\_vhost"\).
@@ -375,7 +371,7 @@ You can change these defaults in the configuration file:
              {iterations, 10000}
          ]}
     ]}
-].  
+].
 ```
 
 On the command line:
