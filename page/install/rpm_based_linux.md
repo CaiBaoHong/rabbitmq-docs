@@ -13,9 +13,9 @@
 
 ## 2. 概述 {#install-2}
 
-rabbitmq-serveris included in Fedora. However, the versions included are often quite old. You will probably get better results installing the .rpm from[PackageCloud](https://packagecloud.io/rabbitmq/rabbitmq-server/)or[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm). Check the[Fedora package](https://admin.fedoraproject.org/updates/rabbitmq-server)details for which version of the server is available for which versions of the distribution.
+Fedora系统自带有rabbitmq-server，但是版本很旧。 所以最好就是从[PackageCloud](https://packagecloud.io/rabbitmq/rabbitmq-server/)或者[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)下载`.rpm`文件来安装. 可以在 [Fedora package](https://admin.fedoraproject.org/updates/rabbitmq-server) 找到对应每个系统版本的rabbitmq-server。
 
-The package is distributed via Yum repositories on[PackageCloud](https://packagecloud.io/rabbitmq/rabbitmq-server/)and[Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm).
+从[PackageCloud](https://packagecloud.io/rabbitmq/rabbitmq-server/) 和 [Bintray](https://bintray.com/rabbitmq/rabbitmq-server-rpm)这两个Yum仓库可以找到rpm安装包
 
 ## 3. 可用的rpm分发版本 {#install-3}
 
