@@ -71,18 +71,43 @@ session required pam_limits.so
 * 每个用户允许打开文件的最大数量 &lt; 操作系统允许打开文件的最大数量
 * soft limit &lt; hard limit
 
-## 4.**开放端口**
+## 4.访问管理后台
+RabbitMQ默认访问帐号是：`guest`，密码也是`guest`。访问地址是：`http://xxx.xxx.xxx.xxx:15672`。但是知道这些还不够。因为`guest`帐号默认只能从RabbitMQ服务端的本机访问，因此需要设置一下。
 
-```
-## 开放http管理后台的端口
+1）需要找到RabbitMQ的日志文件：`/var/log/rabbitmq/rabbit@beta-cat.log`，`beta-cat`是我的linux主机名。查看文件会找到配置文件存放信息：
+~~~
+=INFO REPORT==== 1-Oct-2017::23:32:45 ===
+node           : rabbit@beta-cat
+home dir       : /var/lib/rabbitmq
+config file(s) : /etc/rabbitmq/rabbitmq.config (not found)
+~~~
+
+2）新建一个文件：`/etc/rabbitmq/rabbitmq.config`，输入一下配置内容：
+~~~
+[{rabbit, [{loopback_users, []}]}].
+~~~
+
+3）重启一下RabbitMQ：
+~~~
+systemctl daemon-reload
+systemctl stop rabbitmq-server.service
+systemctl start rabbitmq-server.service
+~~~
+
+4）开放端口
+~~~
+##设置开放端口：
 firewall-cmd --permanent --zone=public --add-port=15672/tcp
 
-## 重新加载
+##重新加载配置：
 firewall-cmd --reload
 
-## 查询开放的端口
+##检查已开放端口：
 firewall-cmd --zone=public --list-ports
-```
+~~~
+
+5）从其它机器访问，帐号密码都是`guest`
+
 
 
 
