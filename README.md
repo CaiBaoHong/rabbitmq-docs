@@ -1,3 +1,11 @@
-# My Awesome Book
+# RabbitMQ 文档
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+> 版本：RabbitMQ 3.6.12
+>
+> 时间：2017-10-03
+
+* 为了语句通顺易理解，我不会直译
+* 为了翻译效率，同时也因为水平有限，我不会全部翻译
+
+
+
