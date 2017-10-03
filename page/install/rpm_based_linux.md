@@ -202,7 +202,34 @@ ulimit -S -n 4096
 
 以上通过执行`ulimit`命令设置的方式，是**soft limit**，而**soft limit不能高于hard limit**（很多linux系统一般设置的hard limit值是4096）。hard limit可以在配置文件`/etc/security/limits.conf`中设置。设置hard limit同时还需要启用[pam\_limits.so](http://askubuntu.com/a/34559)模块，最后还要重新登录或重启一下系统。
 
-注意：运行中的RabbitMQ进程的限制值是无法修改的。因此设置后需要重启一下RabbitMQ：
+**设置hard limit：**
+
+```
+# 编辑文件
+vi /etc/security/limits.conf
+
+# 行末添加：
+* soft nofile 65536
+* hard nofile 65536
+* soft nproc 65536
+* hard nproc 65536
+```
+
+**启用pam\_limits.so模块：**
+
+```
+# 编辑文件
+vi /etc/pam.d/login
+
+# 行末添加：
+session    required    pam_limits.so
+# 这是告诉Linux在用户完成系统登录后，应该调用pam_limits.so模块设置
+# 系统对该用户可使用的各种资源数量的最大限制(包括用户可打开的最大文件数限制)
+```
+
+**最后要重新登录或重启系统，以使hard limit设置生效。**
+
+**注意：**运行中的RabbitMQ进程的限制值是无法修改的。因此设置后需要重启一下RabbitMQ：
 
 ```
 systemctl daemon-reload
