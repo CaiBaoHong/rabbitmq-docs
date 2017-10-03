@@ -2,7 +2,7 @@
 
 * [RabbitMQ 文档](README.md)
 * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md)
-* [服务端](page/server/overview.md)
+* [服务端文档](page/server/index.md)
   * [Configurations](page/server/configuraton/index.md)
     * [File Locations](page/server/configuraton/file_locations.md)
     * [Persistence](page/server/configuraton/persistence.md)
@@ -41,6 +41,6 @@
     * [rabbitmq-echopid](page/server/manual_pages/rabbitmq_echopid.md)
     * [rabbitmq-env.conf](page/server/manual_pages/rabbitmq_env_conf.md)
   * [Windows Quirks](page/server/windows_quirks/index.md)
-
+* [客户端文档](page/client/index.md)
 
 
