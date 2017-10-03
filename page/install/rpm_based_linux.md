@@ -43,8 +43,9 @@ The packages may work on other RPM-based distributions if dependencies \(see bel
 
 ### 4.2 从EPEL仓库安装Erlang {#install-4-2}
 
-1. 通过以下的方式可以启用EPEL（[EPEL FAQ](#)）
+1. 通过以下的方式可以启用EPEL（[EPEL FAQ](#)）  
    For EL5:
+
    ```
    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm'
    ...
@@ -52,6 +53,7 @@ The packages may work on other RPM-based distributions if dependencies \(see bel
    ```
 
    For EL6:
+
    ```
    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm'
    ...
@@ -59,48 +61,36 @@ The packages may work on other RPM-based distributions if dependencies \(see bel
    ```
 
    For EL7:
+
    ```
    su -c 'rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm'
    ...
    su -c 'yum install foo'
    ```
-   
+
    For EL7:
+
    ```
    yum install -y epel-release
    ...
    su -c 'yum install foo'
    ```
-   
+
 2. 使用'root'用户执行一下命令即可安装Erlang：
+
    ```
    yum install erlang
    ```
 
 ### 4.3 从Erlang Solutions仓库安装Erlang {#install-4-3}
 
-1. Follow the instructions under "Installation using repository" at
-   [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html)
-   . Note that Erlang Solutions tend to provide cutting edge Erlang versions that may or may not be
-   [supported by RabbitMQ](https://www.rabbitmq.com/which-erlang.html)
-   . Version locking \(see below\) is recommended when Erlang installed using this option.
+1. Follow the instructions under "Installation using repository" at [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html). Note that Erlang Solutions tend to provide cutting edge Erlang versions that may or may not be [supported by RabbitMQ](https://www.rabbitmq.com/which-erlang.html). Version locking \(see below\) is recommended when Erlang installed using this option.
 
 ### 4.4 从Erlang Solutions安装完整的Erlang {#install-4-4}
 
-1. Download and install the
-   [appropriate](https://www.rabbitmq.com/which-erlang.html)
-   esl-erlang
-   RPM from
-   [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html)
-   .
-2. Download and install the
-   [esl-erlang-compat](https://github.com/jasonmcintosh/esl-erlang-compat)
-   RPM \(
-   [direct download](https://github.com/jasonmcintosh/esl-erlang-compat/releases/download/1.1.1/esl-erlang-compat-18.1-1.noarch.rpm)
-   \) produced by
-   [Jason McIntosh](https://github.com/jasonmcintosh/)
-   .
-   This is needed since Erlang Solutions' monolithic packages provide "esl-erlang"; this package just requires "esl-erlang" and provides "erlang".
+1. Download and install the [appropriate](https://www.rabbitmq.com/which-erlang.html) esl-erlang RPM from [Erlang Solutions](https://www.erlang-solutions.com/resources/download.html).
+2. Download and install the [esl-erlang-compat](https://github.com/jasonmcintosh/esl-erlang-compat) RPM \([direct download](https://github.com/jasonmcintosh/esl-erlang-compat/releases/download/1.1.1/esl-erlang-compat-18.1-1.noarch.rpm)\) produced by [Jason McIntosh](https://github.com/jasonmcintosh/). 
+3. 4. 5. This is needed since Erlang Solutions' monolithic packages provide "esl-erlang"; this package just requires "esl-erlang" and provides "erlang".
 
 ### 4.5 Package Version Locking in Yum {#install-4-5}
 
