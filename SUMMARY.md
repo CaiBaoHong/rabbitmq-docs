@@ -26,6 +26,7 @@
     * [用配置管理工具来调整](page/install/rpm_based_linux.md#install-9-4)
   * [管理消息中间件](page/install/rpm_based_linux.md#install-10)
     * [日志](page/install/rpm_based_linux.md#install-10-1)
+* [RabbitMQ快速安装配置指南](page/install/quick_install.md)
 * [服务端文档](page/server/index.md)
   * [Configurations](page/server/configuration/index.md)
     * [File Locations](page/server/configuration/file_locations.md)
