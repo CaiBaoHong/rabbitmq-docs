@@ -88,7 +88,7 @@ Before installing RabbitMQ, you must install a[supported version](https://www.ra
 
 [yum version locking](https://access.redhat.com/solutions/98873) plugin is recommended to prevent unwanted Erlang upgrades. This is highly recommended when Erlang is installed via the Erlang Solutions repository.
 
-## 5. 安装 RabbitMQ Server {#install-5}
+## 5. 安装RabbitMQ Server {#install-5}
 
 ### 5.1 With rpm and Downloaded RPM {#install-5-1}
 
