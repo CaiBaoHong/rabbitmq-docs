@@ -20,7 +20,7 @@
   * [关于端口](page/install/rpm_based_linux.md#install-7)
   * [默认用户](page/install/rpm_based_linux.md#install-8)
   * [调整Linux系统的限制](page/install/rpm_based_linux.md#install-9)
-    * [xxx](page/install/rpm_based_linux.md#install-9-1)
+    * [用systemd来调整（新版的Linux）](page/install/rpm_based_linux.md#install-9-1)
     * [xxx](page/install/rpm_based_linux.md#install-9-2)
     * [xxx](page/install/rpm_based_linux.md#install-9-3)
     * [xxx](page/install/rpm_based_linux.md#install-9-4)
