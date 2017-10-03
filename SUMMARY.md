@@ -2,7 +2,11 @@
 
 * [RabbitMQ 文档](README.md)
 * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md)
-  * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md)
+  * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md#install-1)
+  * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md#install-2)
+  * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md#install-3)
+  * [在支持RPM的Linux上安装](page/install/rpm_based_linux.md#install-4)
+  
 * [服务端文档](page/server/index.md)
   * [Configurations](page/server/configuraton/index.md)
     * [File Locations](page/server/configuraton/file_locations.md)
