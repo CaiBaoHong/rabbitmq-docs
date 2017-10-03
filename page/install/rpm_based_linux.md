@@ -19,7 +19,7 @@ Fedora系统自带有rabbitmq-server，但是版本很旧。 所以最好就是�
 
 ## 3. 可用的rpm分发版本 {#install-3}
 
-比如RabbitMQ 3.6.3这个版本，它能在以下的支持rpm报管理器Linux分发版本上安装运行：
+比如RabbitMQ 3.6.3这个版本，它能在以下的支持rpm包管理器Linux分发版本上安装运行：
 
 * CentOS 6.x and 7.x \(note: there are two separate RPM packages for 6.x and 7.x\)
 * RedHat Enterprise Linux 6.x and 7.x \(same as for CentOS, there are two separate packages\)
@@ -101,14 +101,14 @@ This is needed since Erlang Solutions' monolithic packages provide "esl-erlang";
 
 ### 5.1 rpm安装 {#install-5-1}
 
-After downloading the server package, issue the following command as 'root':
+下载rabbitmq-server的rpm包后用'root'用户执行一下命令安装:
 
 ```
 rpm --import https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
         yum install rabbitmq-server-3.6.12-1.noarch.rpm
 ```
 
-Our public signing key is also[available from Bintray](https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc):
+Our public signing key is also [available from Bintray](https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc):
 
 ```
 rpm --import https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc
@@ -124,68 +124,38 @@ PackageCloud installs packages via HTTPS and signs them using their GPG key. The
 * Using PackageCloud Puppet module
 * Manually
 
-See
-
-[PackageCloud RabbitMQ repository instructions](https://packagecloud.io/rabbitmq/rabbitmq-server/install)
+See [PackageCloud RabbitMQ repository instructions](https://packagecloud.io/rabbitmq/rabbitmq-server/install)
 
 ## 6. 运行 RabbitMQ Server {#install-6}
 
 ### 6.1 自定义RabbitMQ环境变量 {#install-6-1}
 
-The server should start using defaults. You can[customise the RabbitMQ environment](https://www.rabbitmq.com/configure.html#customise-general-unix-environment). Also see how to[configure components](https://www.rabbitmq.com/configure.html#configuration-file).
+RabbitMQ服务端应该使用默认设置启动的，但你也可以[自定义RabbitMQ的环境变量](https://www.rabbitmq.com/configure.html#customise-general-unix-environment). Also see how to [configure components](https://www.rabbitmq.com/configure.html#configuration-file).
 
-### 6.2 启动Start the Server {#install-6-2}
+### 6.2 启动服务端 {#install-6-2}
 
-The server is not started as a daemon by default when the RabbitMQ server package is installed. To start the daemon by default when the system boots, as an administrator runchkconfig rabbitmq-server on.
+刚安装的RabbitMQ server默认是不会以后台进程的方式启动的。执行命令： `chkconfig rabbitmq-server on` 即可设置当系统启动后以后台进程方式运行。
 
-As an administrator, start and stop the server as usual using/sbin/service rabbitmq-server stop/start/etc.
+开启或关闭的命令：`/sbin/service rabbitmq-server stop/start`.
 
-\_Note:\_The server is set up to run as system userrabbitmq. If you change the location of the Mnesia database or the logs, you must ensure the files are owned by this user \(and also update the environment variables\).
+**注意**: 服务端是以名称为`rabbitmq`的系统用户身份运行的。如果你修改了`Mnesia`数据库的位置或日志文件的位置，需要确保新目录是`rabbitmq`这用户的（该用户具有访问权限）。
 
 ## 7. 关于端口 {#install-7}
 
-SELinux, and similar mechanisms may prevent RabbitMQ from binding to a port. When that happens, RabbitMQ will fail to start. Firewalls can prevent nodes and CLI tools from communicating with each other. Make sure the following ports can be opened:
+SELinux（linux的安全子系统）及其它类似的机制会阻止RabbitMQ绑定端口。如果绑定端口失败，RabbitMQ会启动失败。防火墙可以阻止来自外部其它机器的访问。所以请确保以下端口是可以访问的：
 
-* 4369:
-  [epmd](http://erlang.org/doc/man/epmd.html)
-  , a peer discovery service used by RabbitMQ nodes and CLI tools
-* 5672, 5671: used by AMQP 0-9-1 and 1.0 clients without and with TLS
-* 25672: used by Erlang distribution for inter-node and CLI tools communication and is allocated from a dynamic range \(limited to a single port by default, computed as AMQP port + 20000\). See
-  [networking guide](https://www.rabbitmq.com/networking.html)
-  for details.
-* 15672:
-  [HTTP API](https://www.rabbitmq.com/management.html)
-  clients and
-  [rabbitmqadmin](https://www.rabbitmq.com/management-cli.html)
-  \(only if the
-  [management plugin](https://www.rabbitmq.com/management.html)
-  is enabled\)
-* 61613, 61614:
-  [STOMP clients](https://stomp.github.io/stomp-specification-1.2.html)
-  without and with TLS \(only if the
-  [STOMP plugin](https://www.rabbitmq.com/stomp.html)
-  is enabled\)
-* 1883, 8883: \(
-  [MQTT clients](http://mqtt.org/)
-  without and with TLS, if the
-  [MQTT plugin](https://www.rabbitmq.com/mqtt.html)
-  is enabled
-* 15674: STOMP-over-WebSockets clients \(only if the
-  [Web STOMP plugin](https://www.rabbitmq.com/web-stomp.html)
-  is enabled\)
-* 15675: MQTT-over-WebSockets clients \(only if the
-  [Web MQTT plugin](https://www.rabbitmq.com/web-mqtt.html)
-  is enabled\)
+| 端口 | 用途 |
+|----|----|
+|4369|[epmd](http://erlang.org/doc/man/epmd.html), a peer discovery service used by RabbitMQ nodes and CLI tools|
+|5672, 5671| used by AMQP 0-9-1 and 1.0 clients without and with TLS|
+|25672| used by Erlang distribution for inter-node and CLI tools communication and is allocated from a dynamic range \(limited to a single port by default, computed as AMQP port + 20000\). See [networking guide](https://www.rabbitmq.com/networking.html) for details.|
+|15672|[HTTP API](https://www.rabbitmq.com/management.html) clients and [rabbitmqadmin](https://www.rabbitmq.com/management-cli.html) \(only if the [management plugin](https://www.rabbitmq.com/management.html) is enabled\)|
+|61613, 61614| [STOMP clients](https://stomp.github.io/stomp-specification-1.2.html) without and with TLS \(only if the [STOMP plugin](https://www.rabbitmq.com/stomp.html) is enabled\)|
+|1883, 8883| \( [MQTT clients](http://mqtt.org/) without and with TLS, if the [MQTT plugin](https://www.rabbitmq.com/mqtt.html) is enabled|
+|15674| STOMP-over-WebSockets clients \(only if the [Web STOMP plugin](https://www.rabbitmq.com/web-stomp.html) is enabled\)|
+|15675| MQTT-over-WebSockets clients \(only if the [Web MQTT plugin](https://www.rabbitmq.com/web-mqtt.html) is enabled\)|
 
-It is possible to
-
-[configure RabbitMQ](https://www.rabbitmq.com/configure.html)
-
-to use
-
-[different ports and specific network interfaces](https://www.rabbitmq.com/networking.html)
-
-.
+It is possible to [configure RabbitMQ](https://www.rabbitmq.com/configure.html) to use [different ports and specific network interfaces](https://www.rabbitmq.com/networking.html).
 
 ## 8. 默认用户 {#install-8}
 
