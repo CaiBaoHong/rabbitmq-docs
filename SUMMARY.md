@@ -42,5 +42,15 @@
     * [rabbitmq-env.conf](page/server/manual_pages/rabbitmq_env_conf.md)
   * [Windows Quirks](page/server/windows_quirks/index.md)
 * [客户端文档](page/client/index.md)
+  * [Java 客户端指南](page/client/java_client_guide/index.md)
+    * [Java 客户端工具](page/client/java_client_guide/java_client_tools.md)
+  * [JMS 客户端](page/client/jms_client/index.md)
+    * [JMS Client Spec Compliance](page/client/jms_client/jms_client_spec_compliance.md)
+  * [.NET 客户端指南](page/client/dot_net_client_guide.md)
+  * [Erlang 客户端指南](page/client/erlang_client_guide.md)
+  * [Heartbeats](page/client/heartbeats.md)
+  * [AMQP 0-9-1 参考手册](page/client/amqp_0-9-1_reference.md)
+  * [AMQP 0-9-1 URI 规范](page/client/amqp_0-9-1_uri_spec/index.md)
+    * [AMQP 0-9-1 URI 参数](page/client/amqp_0-9-1_uri_spec/amqp_0-9-1_uri_params.md)
 
-
+AMQP 0-9-1 Reference
