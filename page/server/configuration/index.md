@@ -21,14 +21,14 @@ RabbitMQ提供以下途径可以配置服务端:
 | 途径 | 描述 |
 | :--- | :--- |
 | [环境变量](https://www.rabbitmq.com/configure.html#define-environment-variables) | 定义节点名、文件和目录的位置, runtime flags \(从shell中获取，或在环境配置文件中设置,即：rabbitmq-env.conf或rabbitmq-env-conf.bat\) |
-| [配置文件](https://www.rabbitmq.com/configure.html#configuration-file) | defines server and plugin settings for[TCP listeners and other networking-related settings](https://www.rabbitmq.com/networking.html)[TLS](https://www.rabbitmq.com/ssl.html)[resource constraints \(alarms\)](https://www.rabbitmq.com/alarms.html)[authentication and authorization backends](https://www.rabbitmq.com/access-control.html)[message store settings](https://www.rabbitmq.com/persistence-conf.html)and so on. |
+| [配置文件](https://www.rabbitmq.com/configure.html#configuration-file) | defines server and plugin settings for                                          [TCP listeners and other networking-related settings](https://www.rabbitmq.com/networking.html)               [TLS](https://www.rabbitmq.com/ssl.html)                                                                                                 [resource constraints \(alarms\)](https://www.rabbitmq.com/alarms.html)                                                    [authentication and authorization backends](https://www.rabbitmq.com/access-control.html)                              [message store settings](https://www.rabbitmq.com/persistence-conf.html)                                                           and so on. |
 | [运行时参数和策略](https://www.rabbitmq.com/parameters.html) | defines cluster-wide settings which can change at run time as well as settings that are convenient to configure for groups of queues \(exchanges, etc\) such as including optional queue arguments. |
 
 Most settings are configured using the first two methods. This guide, therefore, focuses on them.
 
-### Config File Locations
+### 配置文件的位置
 
-[Default config file locations](https://www.rabbitmq.com/configure.html#config-location)vary between operating systems and[package types](https://www.rabbitmq.com/download.html). This topic is covered in more details in the rest of this guide.
+[Default config file locations](https://www.rabbitmq.com/configure.html#config-location) vary between 因操作系统和[package types](https://www.rabbitmq.com/download.html)不同This topic is covered in more details in the rest of this guide.
 
 When in doubt about RabbitMQ config file location for your OS and installation method, consult the log file and/or management UI as explained in the following sections.
 
