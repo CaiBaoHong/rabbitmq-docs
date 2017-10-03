@@ -64,7 +64,14 @@ The packages may work on other RPM-based distributions if dependencies \(see bel
    ...
    su -c 'yum install foo'
    ```
-
+   
+   For EL7:
+   ```
+   yum install -y epel-release
+   ...
+   su -c 'yum install foo'
+   ```
+   
 2. 使用'root'用户执行一下命令即可安装Erlang：
    ```
    yum install erlang
