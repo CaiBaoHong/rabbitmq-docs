@@ -1,6 +1,6 @@
 {
-	"title" : "名画滤镜PC版文档",
-	"description" : "项目帮助文档，包括如何安装项目、开发、调试、打包等操作的帮助",
+	"title" : "RabbitMQ文档",
+	"description" : "RabbitMQ文档翻译",
 	"language" : "zh-hans",
 	"author" : "蔡保洪",
 	"plugins": [
