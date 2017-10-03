@@ -21,20 +21,21 @@ RabbitMQ提供以下途径可以配置服务端:
 | 途径 | 描述 |
 | :--- | :--- |
 | [环境变量](https://www.rabbitmq.com/configure.html#define-environment-variables) | 定义节点名、文件和目录的位置, runtime flags \(从shell中获取，或在环境配置文件中设置,即：rabbitmq-env.conf或rabbitmq-env-conf.bat\) |
-| [配置文件](https://www.rabbitmq.com/configure.html#configuration-file) | defines server and plugin settings for                                          [TCP listeners and other networking-related settings](https://www.rabbitmq.com/networking.html)               [TLS](https://www.rabbitmq.com/ssl.html)                                                                                                 [resource constraints \(alarms\)](https://www.rabbitmq.com/alarms.html)                                                    [authentication and authorization backends](https://www.rabbitmq.com/access-control.html)                              [message store settings](https://www.rabbitmq.com/persistence-conf.html)                                                           and so on. |
+| [配置文件](https://www.rabbitmq.com/configure.html#configuration-file) | defines server and plugin settings for[TCP listeners and other networking-related settings](https://www.rabbitmq.com/networking.html)[TLS](https://www.rabbitmq.com/ssl.html)[resource constraints \(alarms\)](https://www.rabbitmq.com/alarms.html)[authentication and authorization backends](https://www.rabbitmq.com/access-control.html)[message store settings](https://www.rabbitmq.com/persistence-conf.html)and so on. |
 | [运行时参数和策略](https://www.rabbitmq.com/parameters.html) | defines cluster-wide settings which can change at run time as well as settings that are convenient to configure for groups of queues \(exchanges, etc\) such as including optional queue arguments. |
 
 Most settings are configured using the first two methods. This guide, therefore, focuses on them.
 
-### 配置文件的位置
+### Config File Locations
 
-[Default config file locations](https://www.rabbitmq.com/configure.html#config-location) vary between 因操作系统和[package types](https://www.rabbitmq.com/download.html)不同This topic is covered in more details in the rest of this guide.
+因操作系统和[package types](https://www.rabbitmq.com/download.html)的不同，[默认配置文件的位置](https://www.rabbitmq.com/configure.html#config-location)也不尽相同。
+This topic is covered in more details in the rest of this guide.
 
-When in doubt about RabbitMQ config file location for your OS and installation method, consult the log file and/or management UI as explained in the following sections.
+如果不知道RabbitMQ的配置文件的位置，可以查看日志文件和管理后台，就能知道配置文件的位置了。
 
-### Verify Configuration: How to Find Config File Location
+### 如何确定配置文件的位置
 
-The active configuration file can be verified by inspecting RabbitMQ log file. It will show up in the[log file](https://www.rabbitmq.com/relocate.html)at the top together with other broker boot log entries, for example:
+我们可以在[日志文件](https://www.rabbitmq.com/relocate.html)中找到当前使用中的配置文件信息，如:
 
 ```
 node           : rabbit@example
@@ -42,7 +43,7 @@ home dir       : /var/lib/rabbitmq
 config file(s) : /etc/rabbitmq/rabbitmq.config
 ```
 
-In case log file cannot be found or read by RabbitMQ, log entry will say so:
+如果找不到配置文件，会有写明not found，如：
 
 ```
 node           : rabbit@example
@@ -50,25 +51,23 @@ home dir       : /var/lib/rabbitmq
 config file(s) : /var/lib/rabbitmq/hare.config (not found)
 ```
 
-Alternatively config file location can be found in the[management UI](https://www.rabbitmq.com/management.html), together with other details about nodes.
+另外，在[管理后台](https://www.rabbitmq.com/management.html)中也可以看到配置文件的位置信息。
 
-When troubleshooting configuration settings, it is very useful to veirfy that the config file path is correct, exists and can be loaded \(e.g. the file is readable\) before checking effective node configuration.
+当我们调试解决配置问题时，查看配置文件位置是否正确、文件是否存在、文件是否能被加载，是非常有用的，
 
-### Verify Configuration: How to Check Effective Configuration
+### 如何验证配置是否成功
 
-It is possible to print effective configuration \(user provided values merged into defaults\) using the[rabbitmqctl environment](https://www.rabbitmq.com/man/rabbitmqctl.1.man.html)command.
+通过[rabbitmqctl environment](https://www.rabbitmq.com/man/rabbitmqctl.1.man.html)命令可以打印配置信息并验证配置是否成功。
 
-Checking effective configuration
+## 自定义RabbitMQ的环境
 
-## Customise RabbitMQ Environment
+有些服务端参数是可以通过环境变量设置的：节点名，配置文件的位置，inter-node communication ports, Erlang VM flags等等。
 
-Certain server parameters can be configured using environment variables: node name, RabbitMQ configuration file location, inter-node communication ports, Erlang VM flags, and so on.
+### 在类Unix系统上自定义RabbitMQ的环境
 
-### Unix \(general\)
+在类Unix系统上，可以通过创建或编辑`rabbitmq-env.conf`文件来定义环境变量。`rabbitmq-env.conf`文件的[位置](https://www.rabbitmq.com/configure.html#config-location)可以通过`RABBITMQ_CONF_ENV_FILE`环境变量来设定。
 
-On Unix-based systems \(including Linux, MacOSX\) you can create/editrabbitmq-env.confto define environment variables. Its[location](https://www.rabbitmq.com/configure.html#config-location)is configurable using theRABBITMQ\_CONF\_ENV\_FILEenvironment variable.
-
-Use the standard environment variable names \(but drop the RABBITMQ\_ prefix\) e.g.
+`rabbitmq-env.conf`文件配置示例(不用加`RABBITMQ_`前缀)：
 
 ```
 #example rabbitmq-env.conf file entries
@@ -81,11 +80,14 @@ NODENAME=bunny@myhost
 CONFIG_FILE=/etc/rabbitmq/testdir/bunnies
 ```
 
-More
+**注意：**
+- 配置文件：rabbitmq.config-->可通过环境变量配置文件来设置
+- 环境变量配置文件：rabbitmq-env.conf-->可通过`RABBITMQ_CONF_ENV_FILE`环境变量来设置
 
-[info on using rabbitmq-env.conf](https://www.rabbitmq.com/man/rabbitmq-env.conf.5.man.html)
 
-### Windows
+关于`rabbitmq-env.conf`文件的更多信息请看：[info on using rabbitmq-env.conf](https://www.rabbitmq.com/man/rabbitmq-env.conf.5.man.html)
+
+### 在类Windows系统上自定义RabbitMQ的环境
 
 If you need to customise names, ports, locations, it is easiest to configure environment variables in the Windows dialogue: Start &gt; Settings &gt; Control Panel &gt; System &gt; Advanced &gt; Environment Variables. Then create or edit the system variable name and value.
 
