@@ -179,11 +179,11 @@ RabbitMQ installations running production workloads may need system limits and k
 
 RabbitMQ如果是在生产环境中运行的话，需要调整系统限制和内核限制，以应对大量并发连接和高容量的队列。要调整的主要是**允许打开文件的最大数量**，即`ulimit -n`命令显示的值。该默认值对消息中间件来说太低了（一般是1024）。我们推荐在生产环境中对系统用户`rabbitmq`（默认运行RabbitMQ server的用户）至少要设置成**65536**，如果是开发环境则设置成**4096。**
 
-实际上有两种限制：操作系统内核允许打开文件的最大数量\(fs.file-max\)、每个用户允许打开文件的最大数量\(ulimit -n\)。前者必须高于后者。
+实际上有两种限制：**操作系统**内核允许打开文件的最大数量\(fs.file-max\)、**每个用户**允许打开文件的最大数量\(ulimit -n\)。前者必须高于后者。
 
 ### 9.1 用systemd来调整（新版的Linux） {#install-9-1}
 
-在使用systemd工具的Linux系统中,操作系统的限制是通过配置这个文件来控制的：`/etc/systemd/system/rabbitmq-server.service.d/limits.conf`, 例如可以设置成这样（如无文件请自行新建）:
+在使用systemd工具的Linux系统中,**操作系统的限制**是通过配置这个文件来控制的：`/etc/systemd/system/rabbitmq-server.service.d/limits.conf`, 例如可以设置成这样（如无文件请自行新建）:
 
 ```
 [Service]
@@ -191,8 +191,6 @@ LimitNOFILE=300000
 ```
 
 ### 9.2 不用systemd来调整（旧版的Linux） {#install-9-2}
-
-The most straightforward way to adjust the per-user limit for RabbitMQ on distributions that do not use systemd is to edit the[rabbitmq-env.conf](http://www.rabbitmq.com/configure.html)to invoke ulimit before the service is started.
 
 不用`systemd`工具来调整每个用户的限制的最直接方式是编辑[rabbitmq-env.conf](http://www.rabbitmq.com/configure.html)文件，编辑后，当RabbitMQ server重启时会执行ulimit命令，从而达到设置**每个用户允许打开文件的最大数量**的目的：
 
@@ -240,50 +238,28 @@ For more information about controlling fs.file-max with sysctl, please refer to 
 
 ### 9.3 验证调整是否成功 {#install-9-3}
 
-[RabbitMQ management UI](https://www.rabbitmq.com/management.html)displays the number of file descriptors available for it to use on the Overview tab.
+[RabbitMQ management UI](https://www.rabbitmq.com/management.html)可以通过网页的形式查看剩余可用的文件打开时数量。而以下是通过命令行方式查看：
 
 ```
-rabbitmqctl
- status
-```
-
-includes the same value.
-
-The following command
-
-```
-cat
- /proc/
-$RABBITMQ_BEAM_PROCESS_PID
-/limits
-```
-
-can be used to display effective limits of a running process.
-
-$RABBITMQ\_BEAM\_PROCESS\_PID
-
-is the OS PID of the Erlang VM running RabbitMQ, as returned by
-
+# 查看RabbitMQ server的状态，记住进程id：pid
 rabbitmqctl status
 
-.
+# 查看设置的limits，$RABBITMQ_BEAM_PROCESS_PID用实际的进程id代替
+cat /proc/$RABBITMQ_BEAM_PROCESS_PID/limits
+```
 
 ### 9.4 用配置管理工具来调整 {#install-9-4}
 
-Configuration management tools \(e.g. Chef, Puppet, BOSH\) provide assistance with system limit tuning. Our[developer tools](https://www.rabbitmq.com/devtools.html#devops-tools)guide lists relevant modules and projects.
+我们也可以用配置管理工具来调整系统限制的值（最大文件打开数量），如：Chef, Puppet, BOSH等。我们的[developer tools](https://www.rabbitmq.com/devtools.html#devops-tools)也列出了一些相关的模块和项目，欲了解请前往查阅。
 
 ## 10. 管理消息中间件 {#install-10}
 
-To stop the server or check its status, etc., you can use package-specific scripts \(e.g. theservicetool\) or invokerabbitmqctl\(as an administrator\). It should be available on the path. Allrabbitmqctlcommands will report the node absence if no broker is running.
+我们可以用service工具来启动或停止RabbitMQ server。也可以用RabbitMQ提供的rabbitmqctl工具（管理员权限打开）。正常的话该工具已经加入到系统环境变量Path中的了，可以直接调用。调用示例如下：
 
-* Invoke
-  rabbitmqctl stop
-  to stop the server.
-* Invoke
-  rabbitmqctl status
-  to check whether it is running.
+* 停止：rabbitmqctl stop
+* 查看状态：rabbitmqctl status
 
-More[info on rabbitmqctl](https://www.rabbitmq.com/man/rabbitmqctl.1.man.html).
+更多信息请看： [info on rabbitmqctl](https://www.rabbitmq.com/man/rabbitmqctl.1.man.html).
 
 ### 10.1 日志 {#install-10-1}
 
